@@ -1,0 +1,202 @@
+
+
+/* Add a dark background color with a little bit see-through */
+.navbar {
+    margin-bottom: 0;
+    background-color: #2d2d30;
+    border: 0;
+    font-size: 13px !important;
+    letter-spacing: 2px;
+    opacity:0.95;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Add a gray color to all navbar links */
+.navbar li a, .navbar .navbar-brand {
+    color: #d5d5d5 !important;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* On hover, the links will turn white */
+.navbar-nav li a:hover {
+    color: #FFFCF2 !important;
+    background-color:#29292c !important;
+}
+
+/* The active link */
+.navbar-nav li.active a {
+    color: #FFFCF2 !important;
+    background-color:#2d2d30 !important;
+}
+
+.navbar-btn {
+  color: #2d2d30;
+  font-size: 13px;
+  margin: 15px 20px 0 0;
+}
+
+.navbar-btn:hover{
+
+}
+
+
+.main-container {background-image: url(main.jpg);
+background-size: cover;
+width: 100%;
+}
+.main-container .main-header {
+  margin-top: 230px;
+  margin-left: 50px;
+  text-shadow: 2px 2px 30px #000000;
+  font-size: 520%;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  line-height: 70px;
+}
+
+.main-container .main-header h3{
+  letter-spacing: 10px;
+  margin-bottom: -50px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.main-container .main-header .btn{
+  letter-spacing: 5px;
+  background: transparent;
+  color:white;
+  border-style: solid;
+  border-width: thick;
+  border-color: white;
+  border-radius: 0;
+  padding: 5px 25px 5px 33px;
+}
+
+.main-container .main-header .btn:hover{
+  background-color: #E2C68A;
+  border-color: #E2C68A;
+  color: #31323A;
+}
+
+/*.forefront-element {
+  -webkit-transform: translateZ(999px) scale(.7);
+  transform: translateZ(999px) scale(.7);
+  z-index: 1;
+}
+
+.base-element {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  z-index: 4;
+}
+
+.background-element {
+  -webkit-transform: translateZ(-999px) scale(2);
+  transform: translateZ(-999px) scale(2);
+  z-index: 3;
+}*/
+
+body {
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+}
+#home {
+  padding-top:50px;
+  max-height:100%;
+  color: #FFFCF2;
+}
+
+h1{
+  font-size: 50px;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+h1{
+  padding-left: 20px;
+  font-weight: bold;
+}
+
+#about {
+  padding-top:50px;
+  max-height:100%;
+  color: #FFFCF2;
+  background-color: #31323A;
+  text-align: center;
+  padding-bottom: 30px;
+
+}
+#services .col-sm-6{
+  margin-left: 0;
+  margin-right: 0;
+  background-color: rgba(49,50,58,0.8) ;
+
+}
+
+.about-member{
+}
+
+.about-trainer{
+}
+
+#services {padding-top:50px;max-height:100%;color: #fff; background-color: #E2C68A;background-image: url('services.jpg');padding-bottom: 20px;}
+#benefits{padding-top:50px;max-height:100%;color: #fff; background-color: #31323A;}
+#contact {padding-top:50px;max-height:100%;color: #fff; background-color: #7BB7B6;}
+
+.service {
+    border: 10px solid transparent;
+    margin-bottom: 25px;
+    width: 80%;
+    height: 80%;
+    opacity: 0.7;
+}
+.service:hover {
+    border-color: #f1f1f1;
+}
+
+.col-md-8 .form-group{
+  box-sizing: border-box;
+}
+
+#contact .col-md-4 p{
+  margin-left: 20px;
+}
+
+#contact .btn{
+  letter-spacing: 5px;
+  background: transparent;
+  color:white;
+  border-style: solid;
+  border-width: thick;
+  border-color: white;
+  border-radius: 0;
+  padding: 5px 25px 5px 33px;
+}
+
+#contact-btn{
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#contact-btn .btn:hover{
+  background-color: #E2C68A;
+  border-color: #E2C68A;
+  color: #31323A;
+}
+
+footer {
+    background-color: #2d2d30;
+    color: #f5f5f5;
+    padding: 32px;
+}
+
+footer a {
+    color: #f5f5f5;
+}
+
+footer a:hover {
+    color: #777;
+    text-decoration: none;
+}
