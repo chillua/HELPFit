@@ -9,6 +9,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
   <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="login.css">
 
 </head>
 <body>
@@ -51,6 +52,47 @@
   </div>
 </div>
 
+<div class="modal fade" id="loginModal"><!-- Login Modal -->
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="login-wrap">
+					<div class="login-container">
+						<h3><strong>Log In</strong></h3>
+						<div class="login-form">
+
+							<form id="login" action="/home.html" method="post" autocomplete="off">
+
+								<div class="group">
+									<label for="username" class="label">Username</label>
+									<input id="username" type="text" name="username" class="input" required>
+								</div>
+								<div class="group">
+									<label for="pass" class="label">Password</label>
+									<input id="pass" type="password" name="password" class="input" data-type="password" required>
+								</div>
+
+								<div class="group">
+									<button type="submit" name="login" class="button">Log In</button>
+								</div>
+							</form>
+                <label><input type="checkbox" value="" checked> Remember me</label> |
+								<a href="#forgot">Forgot Password?</a>
+
+
+							<div class="sign-up">
+								<p>New to HELPFit?</p>
+								<a href="signup.php"><input type="submit" class="button" value="Sign Up"></a>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
 <div id="about" class="container-fluid">
   <h1>About Us</h1>
   <p>Click on the different Section links in the navbar to see the smooth scrolling effect.</p>
@@ -59,24 +101,30 @@
 
 <div id="services" class="container-fluid">
   <h1>Our Services</h1>
-  <div class="col-sm-6 about-member">
-    <h2>Be a Member</h2>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis enim tellus, vitae scelerisque est molestie id. Mauris scelerisque congue ante, dapibus eleifend magna. Suspendisse venenatis lacus est, eget imperdiet neque viverra ac. Aliquam vulputate pulvinar velit at condimentum. Vestibulum ipsum metus, commodo eu tortor at, porttitor accumsan nisi. Nullam ullamcorper vitae leo eu luctus. Donec tristique blandit nulla, feugiat congue ante congue in.
-    <br><br><br><br><br>
-      <div class="collapse">
-      <p>Drummer</p>
-      <p>Loves drummin'</p>
-      <p>Member since 1988</p>
+  <div id="outer-div-member" class="col-sm-6">
+    <h2><b>Be a Member</b></h2>
+    <div class="col-sm-6">
+      <img src="icons/book.png">
+      <h4>Book Sessions</h4>
+      <p>Lorem ipsum dolor sit amet..</p>
+    </div>
+    <div class="col-sm-6">
+      <img src="icons/rate.png">
+      <h4>Review Trainer</h4>
+      <p>Lorem ipsum dolor sit amet..</p>
     </div>
   </div>
-  <div class="col-sm-6 about-trainer">
-    <h2>Be a Trainer</h2>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis enim tellus, vitae scelerisque est molestie id. Mauris scelerisque congue ante, dapibus eleifend magna. Suspendisse venenatis lacus est, eget imperdiet neque viverra ac. Aliquam vulputate pulvinar velit at condimentum. Vestibulum ipsum metus, commodo eu tortor at, porttitor accumsan nisi. Nullam ullamcorper vitae leo eu luctus. Donec tristique blandit nulla, feugiat congue ante congue in.
-    <br><br><br><br><br>
-      <div class="collapse">
-      <p>Drummer</p>
-      <p>Loves drummin'</p>
-      <p>Member since 1988</p>
+  <div id="outer-div-trainer" class="col-sm-6">
+    <h2><b>Be a Trainer</b></h2>
+    <div class="col-sm-6">
+      <img src="icons/create.png">
+      <h4>Create Sessions</h4>
+      <p>Lorem ipsum dolor sit amet..</p>
+    </div>
+    <div class="col-sm-6">
+      <img src="icons/feedback.png">
+      <h4>Receive Feedback</h4>
+      <p>Lorem ipsum dolor sit amet..</p>
     </div>
   </div>
 </div>
@@ -84,17 +132,32 @@
 <div id="benefits" class="container-fluid">
   <h1>Why Us?</h1>
   <div class="col-sm-4">
-      <p><strong>Name</strong></p><br>
-      <img src="bandmember.jpg" class="img-circle service" alt="Random Name">
+    <h3><strong>Easy Access</strong></h3><hr>
+    <div class="img-wrapper">
+      <img src="images/ben1.jpg" class="img-circle service">
+      <div class="moreinfo">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </div>
     </div>
-    <div class="col-sm-4">
-      <p><strong>Name</strong></p><br>
-      <img src="bandmember.jpg" class="img-circle service" alt="Random Name">
+  </div>
+  <div class="col-sm-4">
+    <h3><strong>Flexibility</strong></h3><hr>
+    <div class="img-wrapper">
+      <img src="images/ben2.jpg" class="img-circle service">
+      <div class="moreinfo">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </div>
     </div>
-    <div class="col-sm-4">
-      <p><strong>Name</strong></p><br>
-      <img src="bandmember.jpg" class="img-circle service" alt="Random Name">
+  </div>
+  <div class="col-sm-4">
+    <h3><strong>Time-Saving</strong></h3><hr>
+    <div class="img-wrapper">
+      <img src="images/ben3.jpg" class="img-circle service">
+      <div class="moreinfo">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </div>
     </div>
+  </div>
 </div>
 
 
