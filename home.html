@@ -62,21 +62,26 @@
 
 							<form id="login" action="/home.html" method="post" autocomplete="off">
 
-								<div class="group">
+								<div class="form-group">
 									<label for="username" class="label">Username</label>
-									<input id="username" type="text" name="username" class="input" required>
+									<input id="username" type="text" name="username" class="form-control" placeholder="Username" required>
 								</div>
-								<div class="group">
+								<div class="form-group">
 									<label for="pass" class="label">Password</label>
-									<input id="pass" type="password" name="password" class="input" data-type="password" required>
+
+									<input id="pass" type="password" name="password" class="form-control" placeholder="Password" data-type="password" required>
+                  <span class="icon1"><i class="fa fa-user" aria-hidden="true"></i></span>
 								</div>
 
-								<div class="group">
+								<div class="form-group">
 									<button type="submit" name="login" class="button">Log In</button>
 								</div>
 							</form>
-                <label><input type="checkbox" value="" checked> Remember me</label> |
-								<a href="#forgot">Forgot Password?</a>
+              <div class="checkbox">
+                <input type="checkbox" value="" id="checkbox" checked> <label for="checkbox"></label>
+              </div>
+							Remember me | <a href="#forgot">Forgot Password?</a>
+
 
 
 							<div class="sign-up">
@@ -202,29 +207,19 @@
 
 <script>
 $(document).ready(function(){
-  // Add scrollspy to <body>
   $('body').scrollspy({target: ".navbar", offset: 50});
 
-  // Add smooth scrolling on all links inside the navbar
   $("#myNavbar a, footer a[href='#home']").on('click', function(event) {
-    // Make sure this.hash has a value before overriding default behavior
     if (this.hash !== "") {
-      // Prevent default anchor click behavior
       event.preventDefault();
-
-      // Store hash
       var hash = this.hash;
-
-      // Using jQuery's animate() method to add smooth page scroll
-      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
       $('html, body').animate({
         scrollTop: $(hash).offset().top
       }, 800, function(){
 
-        // Add hash (#) to URL when done scrolling (default click behavior)
         window.location.hash = hash;
       });
-    }  // End if
+    }
   });
 });
 </script>
