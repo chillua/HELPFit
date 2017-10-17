@@ -1,0 +1,133 @@
+@media only screen and (max-width: 759px) {
+  #myNavbar .navbar-nav a{
+    padding:10px !important;
+  }
+
+  #myNavbar .navbar-nav li{
+    border-bottom: solid .4px #aaa;
+  }
+
+  #myNavbar .navbar-nav li.active a{
+    border-bottom: solid .4px #aaa !important;
+  }
+
+
+  #myNavbar .navbar-right{
+    margin-bottom:10px;
+    font-size: 110%;
+  }
+
+  #myNavbar .btn{
+    margin:0;
+  }
+  #myNavbar{
+    text-align: center;
+  }
+}
+
+
+::-webkit-scrollbar {
+    width: 3px;
+    background: #2d2d30;
+}
+::-webkit-scrollbar-thumb {
+    background: #fff;
+}
+
+/* Add a dark background color with a little bit see-through */
+.navbar {
+    margin-bottom: 0;
+    background-color: #2d2d30;
+    border: 0;
+    font-size: 13px !important;
+    letter-spacing: 2px;
+    opacity:0.95;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Add a gray color to all navbar links */
+.navbar li a, .navbar .navbar-brand {
+    color: #d5d5d5 !important;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* On hover, the links will turn white */
+.navbar-nav li a:hover {
+    color: #0F0907 !important;
+    background-color:#E2C68A !important;
+}
+
+/* The active link */
+.navbar-nav li.active a {
+    color: #E2C68A !important;
+    background-color:#2d2d30 !important;
+}
+
+.navbar-btn {
+  font-size: 13px;
+  margin-top: 15px;
+  border-radius: 20px;
+}
+
+.nav-signup{
+  color: #2d2d30;
+  background-color: #E2C68A;
+  margin-right: 25px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.nav-signup:hover{
+  background-color:#CEB47E;
+}
+
+.nav-login{
+  color: #2d2d30;
+  background-color: #D2CFCF;
+  margin-right: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.nav-login:hover{
+  background-color: #FFFCF2;
+}
+
+.nav-logout{
+  color: #2d2d30;
+  background-color: #E2C68A;
+  margin-right: 25px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.nav-logout:hover{
+  background-color:#CEB47E;
+}
+
+
+.navbar-btn.active.focus, .navbar-btn.active:focus, .navbar-btn.focus, .navbar-btn:active.focus, .navbar-btn:active:focus, .navbar-btn:focus {
+    outline: 0; !important;
+}
+
+
+body {
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+}
+
+footer {
+    background-color: #2d2d30;
+    color: #f5f5f5;
+    padding: 32px;
+}
+
+footer a {
+    color: #f5f5f5;
+}
+
+footer a:hover {
+    color: #777;
+    text-decoration: none;
+}

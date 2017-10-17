@@ -78,11 +78,20 @@
 padding-right: 3px;
 }
 
+#loginModal .modal-content  {
+    -webkit-border-radius: 20px !important;
+    -moz-border-radius: 20px !important;
+    border-radius: 20px !important;
+		background: transparent;
+}
+
 .login-wrap {
 	background:url('images/login.jpg') no-repeat center;
 	box-shadow:0 12px 15px 0 rgba(0,0,0,.24);
 	color: #FFFCF2;
-	border-radius: 5px;
+	-webkit-border-radius: 20px !important;
+	-moz-border-radius: 20px !important;
+	border-radius: 20px !important;
 }
 
 .login-wrap a {
@@ -99,7 +108,7 @@ padding-right: 3px;
 	padding:40px 70px 70px 70px;
 	background:rgba(59,55,55,.8);
 	text-align: center;
-	border-radius: 5px;
+	border-radius: 20px !important;
 }
 
 .login-form .form-group {
@@ -127,7 +136,6 @@ padding-right: 3px;
 	border:0.5px solid #b2d1e6;
 	padding:10px 20px;
 	border-radius:20px;
-	background:rgba(255,255,255,0.6);
 	height: 40px;
 }
 
@@ -136,7 +144,7 @@ padding-right: 3px;
 	padding-left:50px;
 }
 
-.login-form #pass{
+.login-form #login-password{
 	background: url(smallicons/lock.png) no-repeat scroll 15px 7px;
 	padding-left:50px;
 }
@@ -234,8 +242,4 @@ padding-right: 3px;
 	padding:10px 20px;
 	display:block;
 	outline: none;
-}
-
-.login-form .sign-up input:hover{
-	background: rgba(250, 97, 85, 1);
 }
