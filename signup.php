@@ -52,7 +52,7 @@
   						<div class="login-form">
 
   							<form id="login" action="home.php" method="post" autocomplete="off">
-
+                  <?php include('errors.php'); ?>
   								<div class="form-group">
   									<label for="username" class="label">Username</label>
   									<input id="username" type="text" name="username" class="form-control" placeholder="Username" required>
@@ -92,7 +92,7 @@
           <h1><strong>Sign Up</strong></h1>
           <div class="signup-form">
             <form id="signup" action="#" method="post" autocomplete="off" >
-              <<?php include('errors.php') ?>
+              <?php include('errors.php') ?>
               <div class="form-group">
                 <label for="username" class="label">USERNAME</label>
                 <input id="username" type="text" name="username" class="form-control" placeholder="Username" required>

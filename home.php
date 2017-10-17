@@ -1,4 +1,9 @@
-<?php include('server.php'); ?>
+<?php
+include('server.php');
+if (isset($_SESSION['user'])) {
+  header('location: member_main.php');
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>

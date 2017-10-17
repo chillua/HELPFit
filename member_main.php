@@ -1,4 +1,21 @@
+<?php
+  include('server.php');
+  if (!isset($_SESSION['user'])) {
+    $_SESSION['msg'] = "You must log in first";
+  	header('location: home.php');
+  }
 
+  if ($_SESSION['user']['user_type'] == 'trainer'){
+    header('location: trainer_main.php');
+  }
+
+	if (isset($_GET['logout'])) {
+		session_destroy();
+		unset($_SESSION['user']);
+		header("location: home.php");
+	}
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,15 +45,37 @@
     <div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#benefits">Profile</a></li>
-          <li><a href="#about">Join Sessions</a></li>
-          <li><a href="#services">View History</a></li>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">Join Sessions</a></li>
+          <li><a href="#">View History</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <a><button class="btn navbar-btn nav-logout"><strong>Log Out</strong></button></a>
+          <a href="member_main.php?logout='1'"><button class="btn navbar-btn nav-logout"><strong>Log Out</strong></button></a>
 				</ul>
       </div>
     </div>
   </div>
 </nav>
+
+<div class="content">
+
+		<!-- notification message -->
+		<?php if (isset($_SESSION['success'])) : ?>
+			<div class="error success" >
+				<h3>
+					<?php
+						echo $_SESSION['success'];
+						unset($_SESSION['success']);
+					?>
+				</h3>
+			</div>
+		<?php endif ?>
+
+		<!-- logged in user information -->
+		<?php  if (isset($_SESSION['user'])) : ?>
+			<h1 style="padding-top:50px;">Welcome <strong><?php echo $_SESSION['user']['name']; ?></strong></h1>
+		<?php endif ?>
+	</div>
+</body>
+</html>
