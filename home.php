@@ -1,3 +1,4 @@
+<<<<<<< HEAD:home.php
 <?php
 include('server.php');
 if (isset($_SESSION['user'])) {
@@ -240,3 +241,235 @@ $(document).click(function (event) {
 
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HELPFit</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="login.css">
+
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#home">HELPFit</a>
+    </div>
+    <div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#benefits">Benefits</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+					<a href="signup.html"><button class="btn navbar-btn" ><strong>Sign Up</strong></button></a>
+					<a><button class="btn navbar-btn" data-toggle="modal" data-target="#loginModal"><strong>Log In</strong></button></a>
+				</ul>
+      </div>
+    </div>
+  </div>
+</nav>
+</div>
+<div id="home" class="container main-container ">
+  <div class = "main-header">
+    <h3>HELPFit</h3>
+    <br> Practice build brains <br> in your muscles. <br>
+
+    <a><button class="btn" data-target="#">JOIN US</button></a>
+    <br><br><br><br>
+  </div>
+</div>
+
+<div class="modal fade" id="loginModal"><!-- Login Modal -->
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="login-wrap">
+					<div class="login-container">
+						<h3><strong>Log In</strong></h3>
+						<div class="login-form">
+
+							<form id="login" action="/home.html" method="post" autocomplete="off">
+
+								<div class="form-group">
+									<label for="username" class="label">Username</label>
+									<input id="username" type="text" name="username" class="form-control" placeholder="Username" required>
+								</div>
+								<div class="form-group">
+									<label for="pass" class="label">Password</label>
+
+									<input id="pass" type="password" name="password" class="form-control" placeholder="Password" data-type="password" required>
+                  <span class="icon1"><i class="fa fa-user" aria-hidden="true"></i></span>
+								</div>
+
+								<div class="form-group">
+									<button type="submit" name="login" class="button">Log In</button>
+								</div>
+							</form>
+              <div class="checkbox">
+                <input type="checkbox" value="" id="checkbox" checked> <label for="checkbox"></label>
+              </div>
+							Remember me | <a href="#forgot">Forgot Password?</a>
+
+
+
+							<div class="sign-up">
+								<p>New to HELPFit?</p>
+								<a href="signup.php"><input type="submit" class="button" value="Sign Up"></a>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+<div id="about" class="container-fluid">
+  <h1>About Us</h1>
+  <p>We are a company that is motivated to bring fitness into your daily into your life unlike 
+	any other company. We will help you experience training under a trainer without them constantly being next to you.
+	Click on the different Section links in the navbar to see the smooth scrolling effect.</p>
+  <br><br><br>
+</div>
+
+<div id="services" class="container-fluid">
+  <h1>Our Services</h1>
+  <div id="outer-div-member" class="col-sm-6">
+    <h2><b>Be a Member</b></h2>
+    <div class="col-sm-6">
+      <img src="icons/book.png">
+      <h4>Book Sessions</h4>
+      <p>Click here to book yourself onto any of our available training sessions</p>
+    </div>
+    <div class="col-sm-6">
+      <img src="icons/rate.png">
+      <h4>Review Trainer</h4>
+      <p>Click here to rate your experience with your trainers</p>
+    </div>
+  </div>
+  <div id="outer-div-trainer" class="col-sm-6">
+    <h2><b>Be a Trainer</b></h2>
+    <div class="col-sm-6">
+      <img src="icons/create.png">
+      <h4>Create Sessions</h4>
+      <p>Click here to create a new training sessions </p>
+    </div>
+    <div class="col-sm-6">
+      <img src="icons/feedback.png">
+      <h4>Receive Feedback</h4>
+      <p>View your feedbacks here</p>
+    </div>
+  </div>
+</div>
+
+<div id="benefits" class="container-fluid">
+  <h1>Why Us?</h1>
+  <div class="col-sm-4">
+    <h3><strong>Easy Access</strong></h3><hr>
+    <div class="img-wrapper">
+      <img src="images/ben1.jpg" class="img-circle service">
+      <div class="moreinfo">
+        This website is easily accessible through most of your daily devices
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <h3><strong>Flexibility</strong></h3><hr>
+    <div class="img-wrapper">
+      <img src="images/ben2.jpg" class="img-circle service">
+      <div class="moreinfo">
+        You can access this anytime and anywhere you wish to.
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <h3><strong>Time-Saving</strong></h3><hr>
+    <div class="img-wrapper">
+      <img src="images/ben3.jpg" class="img-circle service">
+      <div class="moreinfo">
+        With the convenience at hand its obvious that with this website you are bound to save your precious time.
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="contact" class="container-fluid">
+  <h1>Contact Us</h1>
+  <div class="row test">
+    <div class="col-md-4">
+      <p>Any Questions? Any problems? Contact us!</p>
+      <p><span class="glyphicon glyphicon-map-marker"></span>&nbsp;&nbsp;KL, Malaysia</p>
+      <p><span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;Phone: +60 10000000</p>
+      <p><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;E-mail: mail@mail.com</p>
+    </div>
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+        </div>
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="email" name="email" placeholder="E-mail" type="email" required>
+        </div>
+        <div class="col-md-12 form-group">
+          <input class="form-control" id="subject" name="subject" placeholder="Subject" type="text" required>
+        </div>
+      </div>
+
+      <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
+      <div id="contact-btn" class="row">
+        <div class="col-md-12 form-group">
+          <button class="btn" type="submit">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="text-center">
+  <a class="up-arrow" href="#home" data-toggle="tooltip" title="TO TOP">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a><br><br>
+  <p>Copyright &copy; 2017 HELPFit</p>
+</footer>
+
+<script>
+$(document).ready(function(){
+  $('body').scrollspy({target: ".navbar", offset: 50});
+
+  $("#myNavbar a, footer a[href='#home']").on('click', function(event) {
+    if (this.hash !== "") {
+      event.preventDefault();
+      var hash = this.hash;
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+
+        window.location.hash = hash;
+      });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
+>>>>>>> 5ef4ac98a45440e41d41cf042aa82199e01df5d7:home.html
