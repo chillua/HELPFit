@@ -253,4 +253,7 @@ if (isset($_POST['change_password'])) {
   }
 }
 
+//CREATE SESSION
+if (isset($_POST['createsession'])) {}
+
  ?>

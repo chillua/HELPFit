@@ -138,3 +138,9 @@ body{
 	color: #fff;
 	border: solid .5px rgba(0, 0, 0, 0);
 }
+
+.session-form #error-msg-pg , .session-form #error-msg-sdm{
+	display: none;
+	color: #E2947F;
+	text-align: center;
+}

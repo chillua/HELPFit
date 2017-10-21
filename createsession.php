@@ -94,9 +94,10 @@
                 </div>
               </div>
             </div>
+            <div id="error-msg-pg">Please select personal or group training.</div>
             <div class="form-group">
               <label for="title" class="label">TITLE</label>
-              <input id="title" type="text" name="name" class="form-control" placeholder="Title" required>
+              <input id="title" type="text" name="title" class="form-control" placeholder="Title" required>
             </div>
             <div class="form-group">
               <div class="row">
@@ -124,25 +125,26 @@
               <div class="row">
                 <div class="col-sm-12 col-lg-4">
                   <label class="radio">
-                    <input type="radio" id="radio-sport" name="class_type" value="sport" onclick="showMember(); showErrorMsg();"required>
+                    <input type="radio" id="radio-sport" name="class_type" value="sport" onclick="showErrorMsgSdm();"required>
                     <div class="choice">Sport</div>
                   </label>
                 </div>
                 <div class="col-sm-12 col-lg-4">
                   <label class="radio">
-                    <input type="radio" id="radio-dance" name="class_type" value="dance" onclick="showMember(); showErrorMsg();"required>
+                    <input type="radio" id="radio-dance" name="class_type" value="dance" onclick="showErrorMsgSdm();"required>
                     <div class="choice">Dance</div>
                   </label>
                 </div>
                 <div class="col-sm-12 col-lg-4">
                   <label class="radio">
-                    <input type="radio" id="radio-mma" name="class_type" value="mma" onclick="showMember(); showErrorMsg();"required>
+                    <input type="radio" id="radio-mma" name="class_type" value="mma" onclick="showErrorMsgSdm();"required>
                     <div class="choice">MMA</div>
                   </label>
                 </div>
               </div>
             </div>
           </div>
+          <div id="error-msg-sdm">Please select sport, dance or MMA type of training.</div>
             <div class="form-group">
               <button type="submit" name="createsession" class="button" style="margin-top:10px;" onclick="showErrorMsg();">Create</button>
             </div>
@@ -164,10 +166,18 @@
 <script>
 // to check if the radio buttons are selected
 function showErrorMsg(){
-  if(!document.getElementById("radio-trainer").checked && !document.getElementById("radio-member").checked) {
-    document.getElementById('error-msg-mt').style.display = 'block';
+  if(!document.getElementById("radio-group").checked && !document.getElementById("radio-personal").checked) {
+    document.getElementById('error-msg-pg').style.display = 'block';
   }else{
-    document.getElementById('error-msg-mt').style.display = 'none';
+    document.getElementById('error-msg-pg').style.display = 'none';
+  }
+}
+function showErrorMsgSdm(){
+  if(!document.getElementById("radio-mma").checked && !document.getElementById("radio-sport").checked
+      && !document.getElementById("radio-dance").checked) {
+    document.getElementById('error-msg-sdm').style.display = 'block';
+  }else{
+    document.getElementById('error-msg-sdm').style.display = 'none';
   }
 }
 
