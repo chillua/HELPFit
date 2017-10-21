@@ -81,6 +81,20 @@ body{
 	padding-left:50px;
 }
 
+.alert-success{
+  background-color: rgba( 123, 183, 182, 0.7);
+  border: solid .5px rgba( 112, 167, 166, 0.7);
+  border-radius: 20px;
+  color:#4B7A79;
+}
+
+.alert-danger{
+  background-color: rgba( 226, 148, 127, 0.7);
+  border: solid .5px rgba( 214, 123, 113, 0.7);
+  border-radius: 20px;
+	color: #AF5A50;
+}
+
 .signup-form p {color:#aaa; font-size: 80%; padding-top: 20px;}
 #member-signup {display: none;}
 #trainer-signup {display:none;}

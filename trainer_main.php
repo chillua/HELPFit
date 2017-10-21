@@ -45,9 +45,9 @@
     <div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Profile</a></li>
-          <li><a href="#">Create Sessions</a></li>
+          <li><a href="trainer_main.php" class="active-page">Home</a></li>
+          <li><a href="profile.php">Profile</a></li>
+          <li><a href="createsession.php">Create Sessions</a></li>
           <li><a href="#">Manage Sessions</a></li>
           <li><a href="#">View History</a></li>
         </ul>
@@ -59,24 +59,32 @@
   </div>
 </nav>
 
-<div class="content">
+<div class="container main-container">
 
-		<!-- notification message -->
-		<?php if (isset($_SESSION['success'])) : ?>
-			<div class="error success" >
-				<h3>
-					<?php
-						echo $_SESSION['success'];
-						unset($_SESSION['success']);
-					?>
-				</h3>
-			</div>
-		<?php endif ?>
+  <!-- notification message -->
+  <?php if (isset($_SESSION['success'])) : ?>
+    <div class="alert alert-success alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>
+        <?php
+          echo $_SESSION['success'];
+          unset($_SESSION['success']);
+        ?>
+      </strong>
+      </h1>
+    </div>
+  <?php endif ?>
 
-		<!-- logged in user information -->
-		<?php  if (isset($_SESSION['user'])) : ?>
-			<h1 style="padding-top:50px;">Welcome <strong><?php echo $_SESSION['user']['name']; ?></strong></h1>
-		<?php endif ?>
-	</div>
+  <!-- logged in user information -->
+  <?php  if (isset($_SESSION['user'])) : ?>
+    <h1>Hello,<br> <strong><?php echo $_SESSION['user']['name']; ?></strong></h1>
+  <?php endif ?>
+</div>
+<footer class="text-center">
+  <a class="up-arrow" href="#home" data-toggle="tooltip" title="TO TOP">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a><br><br>
+  <p>Copyright &copy; 2017 HELPFit</p>
+</footer>
 </body>
 </html>

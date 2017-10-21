@@ -94,14 +94,41 @@ padding-right: 3px;
 	border-radius: 20px !important;
 }
 
-.login-wrap a {
+/* customise the close button of the modal */
+#loginModal .close{
+	color: #fff;
+	text-shadow: 0 0 2px #000;
+	font-size: 35px;
+	opacity: .6;
+}
+
+#loginModal .close:hover{
+	color: #fff;
+	opacity: .3;
+}
+
+.error-login{
+	padding:0;
+	margin-bottom: -30px;
 	color: #E2947F;
+	font-weight: bold;
+}
+
+/* remove the outline */
+.close.active.focus, .close.active:focus, .close.focus, .close:active.focus, .close:active:focus, .close:focus {
+		color: #000;
+    outline: 0; !important;
+}
+
+
+.login-wrap a {
+	color: #7BB7B6;
 	text-decoration:none;
-	font-weight: bold
+	font-weight: bold;
 }
 
 .login-wrap a:hover{
-	text-decoration:none
+	text-decoration: underline;
 }
 
 .login-container {
@@ -222,8 +249,11 @@ padding-right: 3px;
 	padding-top: 10px;
 }
 
+.login-form .sign-up a{
+	text-decoration: none;
+}
 .login-form .sign-up .button{
-	background: #7BB7B6
+	background: #7BB7B6;
 }
 
 .login-form .sign-up .button:hover{

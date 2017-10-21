@@ -1,0 +1,37 @@
+@media only screen and (max-width: 700px) {
+  .main-container{
+    padding-top: 200px;
+    padding-left: 20px;
+    padding-bottom: 50px;
+  }
+  h1{
+    font-size: 300%;
+  }
+}
+
+body{
+  background-image: url('images/usermain.jpg');
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-position:left;
+}
+.main-container{
+  padding-top: 280px;
+  padding-left: 20px;
+  padding-bottom: 50px;
+}
+h1{
+  font-size: 500%;
+}
+
+.alert{
+  background-color: rgba( 123, 183, 182, 0.3);
+  border: solid .5px rgba( 112, 167, 166, 0.3);
+  border-radius: 20px;
+  color:#70A7A6;
+}
+
+.close{
+  color:#70A7A6;
+  opacity:1;
+}

@@ -45,23 +45,28 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-/* Add a gray color to all navbar links */
+/* navbar links */
 .navbar li a, .navbar .navbar-brand {
     color: #d5d5d5 !important;
     padding-top: 20px;
     padding-bottom: 20px;
 }
 
-/* On hover, the links will turn white */
+/* links hover */
 .navbar-nav li a:hover {
     color: #0F0907 !important;
     background-color:#E2C68A !important;
 }
 
-/* The active link */
+/* active links */
 .navbar-nav li.active a {
     color: #E2C68A !important;
     background-color:#2d2d30 !important;
+}
+
+.navbar-nav .active-page {
+  color: #E2C68A !important;
+  background-color:#2d2d30 !important;
 }
 
 .navbar-btn {

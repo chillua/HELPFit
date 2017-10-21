@@ -1,4 +1,4 @@
-<?php include('server.php'); ?>
+<?php include('server.php');?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,11 +48,11 @@
   			<div class="modal-content">
   				<div class="login-wrap">
   					<div class="login-container">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   						<h3><strong>Log In</strong></h3>
   						<div class="login-form">
 
-  							<form id="login" action="home.php" method="post" autocomplete="off">
-                  <?php include('errors.php'); ?>
+  							<form id="login" method="post" autocomplete="off">
   								<div class="form-group">
   									<label for="username" class="label">Username</label>
   									<input id="username" type="text" name="username" class="form-control" placeholder="Username" required>
@@ -62,13 +62,13 @@
 
   									<input id="login-password" type="password" name="login-password" class="form-control" placeholder="Password" required>
   								</div>
-
+                  <?php echo display_error_login(); ?>
   								<div class="form-group">
-  									<button type="submit" name="login" class="button">Log In</button>
+  									<button type="submit" name="login" class="button" >Log In</button>
   								</div>
   							</form>
                 <div class="checkbox">
-                  <input type="checkbox" value="" id="checkbox" checked> <label for="checkbox"></label>
+                  <input type="checkbox" value="on" id="checkbox" name="remember_me" checked> <label for="checkbox"></label>
                 </div>
   							Remember me | <a href="#forgot">Forgot Password?</a>
   							<div class="sign-up">
@@ -90,9 +90,21 @@
       <div class="signup-wrap">
         <div class="signup-container">
           <h1><strong>Sign Up</strong></h1>
+          <?php echo display_error(); ?>
+          <?php if(isset($_SESSION['success_signup'])) : ?>
+            <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>
+                <?php
+                  echo $_SESSION['success_signup'];
+                  unset($_SESSION['success_signup']);
+                ?>
+              </strong>
+              </h1>
+            </div>
+          <?php endif ?>
           <div class="signup-form">
             <form id="signup" action="#" method="post" autocomplete="off" >
-              <?php include('errors.php') ?>
               <div class="form-group">
                 <label for="username" class="label">USERNAME</label>
                 <input id="username" type="text" name="username" class="form-control" placeholder="Username" required>
@@ -169,6 +181,9 @@
 </footer>
 
 <script>
+<?php  if (count($errors_login) > 0) : ?>
+  $('#loginModal').modal('show');
+<?php  endif ?>
 // validate password
 var password = document.getElementById("password")
   , confirm_password = document.getElementById("confirm_password");

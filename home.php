@@ -58,46 +58,46 @@ if (isset($_SESSION['user'])) {
   </div>
 </div>
 
-<div class="modal fade" id="loginModal" role="dialog"><!-- Login Modal -->
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="login-wrap">
-					<div class="login-container">
-						<h3><strong>Log In</strong></h3>
-						<div class="login-form">
+<div class="modal fade" id="loginModal"><!-- Login Modal -->
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="login-wrap">
+          <div class="login-container">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3><strong>Log In</strong></h3>
+            <div class="login-form">
 
-							<form id="login" action="home.php" method="post" autocomplete="off">
+              <form id="login" method="post" autocomplete="off">
+                <div class="form-group">
+                  <label for="username" class="label">Username</label>
+                  <input id="username" type="text" name="username" class="form-control" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                  <label for="login-password" class="label">Password</label>
 
-								<div class="form-group">
-									<label for="username" class="label">Username</label>
-									<input id="username" type="text" name="username" class="form-control" placeholder="Username" required>
-								</div>
-								<div class="form-group">
-									<label for="login-password" class="label">Password</label>
-
-									<input id="login-password" type="password" name="login-password" class="form-control" placeholder="Password" required>
-								</div>
-
-								<div class="form-group">
-									<button type="submit" name="login" class="button">Log In</button>
-								</div>
-							</form>
+                  <input id="login-password" type="password" name="login-password" class="form-control" placeholder="Password" required>
+                </div>
+                <?php echo display_error_login(); ?>
+                <div class="form-group">
+                  <button type="submit" name="login" class="button" >Log In</button>
+                </div>
+              </form>
               <div class="checkbox">
-                <input type="checkbox" value="" id="checkbox" checked> <label for="checkbox"></label>
+                <input type="checkbox" value="on" id="checkbox" name="remember_me" checked> <label for="checkbox"></label>
               </div>
-							Remember me | <a href="#forgot">Forgot Password?</a>
-							<div class="sign-up">
-								<p>New to HELPFit?</p>
-								<a href="signup.php"><input type="submit" class="button" value="Sign Up"></a>
-							</div>
-						</div>
+              Remember me | <a href="#forgot">Forgot Password?</a>
+              <div class="sign-up">
+                <p>New to HELPFit?</p>
+                <a href="signup.php"><input type="submit" class="button" value="Sign Up"></a>
+              </div>
+            </div>
 
-					</div>
-				</div>
-			</div>
+          </div>
+        </div>
+      </div>
 
-		</div>
-	</div>
+    </div>
+  </div>
   <!-- End of Login Modal -->
 
 
