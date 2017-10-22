@@ -19,7 +19,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>HELPFit</title>
+  <title>HELPFit Trainer | Home</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -28,6 +28,7 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
   <link rel="stylesheet" href="user_main.css">
   <link rel="stylesheet" href="nav.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
 
 </head>
 <body>
@@ -40,7 +41,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#home">HELPFit</a>
+      <a class="navbar-brand" href="#home"><img src="icons/helpfitlogosmall.png"></a>
     </div>
     <div>
       <div class="collapse navbar-collapse" id="myNavbar">

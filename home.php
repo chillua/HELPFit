@@ -7,7 +7,7 @@ if (isset($_SESSION['user'])) {
 <!DOCTYPE html>
 <html>
 <head>
-  <title>HELPFit</title>
+  <title>HELPFit | Home</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -17,6 +17,7 @@ if (isset($_SESSION['user'])) {
   <link rel="stylesheet" href="home.css">
   <link rel="stylesheet" href="login.css">
   <link rel="stylesheet" href="nav.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
 
 </head>
 <body>
@@ -29,7 +30,7 @@ if (isset($_SESSION['user'])) {
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#home">HELPFit</a>
+      <a class="navbar-brand" href="#home"><img src="icons/helpfitlogosmall.png"></a>
     </div>
     <div>
       <div class="collapse navbar-collapse" id="myNavbar">
@@ -49,7 +50,7 @@ if (isset($_SESSION['user'])) {
   </div>
 </nav>
 <div id="home" class="container main-container ">
-  <div class = "main-header">
+  <div class = "main-header" id="main-header">
     <h3>HELPFit</h3>
     <br> Practice build brains <br> in your muscles. <br>
 
@@ -102,11 +103,13 @@ if (isset($_SESSION['user'])) {
 
 
 <div id="about" class="container-fluid">
+  <div class="col-xs-12 col-sm-12 col-sm-offset-0 col-lg-6 col-lg-offset-3">
   <h1>About Us</h1>
   <p>We are a company that is motivated to bring fitness into your daily into your life unlike
 	any other company. We will help you experience training under a trainer without them constantly being next to you.
-	Click on the different Section links in the navbar to see the smooth scrolling effect.</p>
+	<br><br><br><img src="icons/helpfitlogosmall.png"></p>
   <br><br><br>
+</div>
 </div>
 
 <div id="services" class="container-fluid">
@@ -213,6 +216,9 @@ if (isset($_SESSION['user'])) {
 </footer>
 
 <script>
+<?php  if (count($errors_login) > 0) : ?>
+  $('#loginModal').modal('show');
+<?php  endif ?>
 $(document).ready(function(){
   $('body').scrollspy({target: ".navbar", offset: 50});
   $("#myNavbar a, footer a[href='#home']").on('click', function(event) {

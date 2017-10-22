@@ -254,6 +254,51 @@ if (isset($_POST['change_password'])) {
 }
 
 //CREATE SESSION
-if (isset($_POST['createsession'])) {}
+if (isset($_POST['createsession'])) {
+  $training_type = mysqli_real_escape_string($db, $_POST['training_type']);
+  $title = trim(mysqli_real_escape_string($db, $_POST['title']));
+  $date = $_POST['date'];
+  $time = $_POST['time'];
+  $fee = $_POST['fee'];
+  $max_pax = $_POST['max_pax'];
+  $class_type = mysqli_real_escape_string($db, $_POST['class_type']);
+
+  if (empty($training_type)) { array_push($errors, "Please choose either personal training or group training."); }
+  if (empty($title)) { array_push($errors, "Title is required."); }
+	if (empty($date)) { array_push($errors, "Date is required."); }
+	if (empty($time)) { array_push($errors, "Time is required."); }
+  if (empty($fee)) { array_push($errors, "Fee is required."); }
+
+  if($training_type == "group"){
+    if (empty($max_pax)) { array_push($errors, "Password is required."); }
+    if (empty($class_type)) { array_push($errors, "Please choose a training class type."); }
+  }
+
+  $user_id = $_SESSION['user']['user_id'];
+  $status = true; //status set as available
+  if (count($errors) == 0) {
+    $query = "INSERT INTO trainingsession (title, date, time, fee, status, trainer_id, training_type)
+				  VALUES('$title','$date', '$time','$fee','$status','$user_id','$training_type')";
+		mysqli_query($db, $query);
+    $session_id = mysqli_insert_id($db);
+    if($training_type == "personal")
+    {
+      $nquery = "INSERT INTO personaltraining (sessionID, notes)
+            VALUES('$session_id', '')";
+      mysqli_query($db, $nquery);
+    }
+    else if ($training_type == "group")
+    {
+      $nquery = "INSERT INTO grouptraining (sessionID, max_pax, class_type)
+            VALUES('$session_id', '$max_pax','$class_type')";
+      mysqli_query($db, $nquery);
+    }
+
+		$_SESSION['success_createsession'] = "You have successfully created a training session!";
+		header('location: createsession.php');
+    exit();
+	}
+
+}
 
  ?>

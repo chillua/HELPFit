@@ -4,6 +4,7 @@
 
 body{
 	background-image: url(images/signup.jpg); background-size: cover;
+	background-position: right;
 }
 .signup-container {
 	padding-top: 40px;
@@ -19,7 +20,7 @@ body{
 	padding:35px 40px 30px 40px;
 	background: rgba(255,255,255,.9);
 	border-radius: 20px;
-	box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+	box-shadow: 0 3px 6px rgba(0,0,0,0.1);
 }
 
 .signup-form .form-group{
@@ -79,6 +80,8 @@ body{
 	background: url(smallicons/specialty.png) no-repeat scroll 16px 8px;
 	background-color: rgba(0, 0, 0, 0.1);
 	padding-left:50px;
+	margin-top:15px;
+	margin-bottom: 18.5px;
 }
 
 .alert-success{
@@ -106,7 +109,7 @@ body{
 	font-weight:bold;
 	font-size: 95%;
 	background-color: #70A7A6;
-	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	box-shadow: 0 3px 6px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.2);
 	border-radius: 20px;
 	border:none;
 	padding:10px 20px;
@@ -139,4 +142,9 @@ body{
 	display: none;
 	color: #E2947F;
 	text-align: center;
+}
+
+.close{
+  color:#70A7A6;
+  opacity:1;
 }

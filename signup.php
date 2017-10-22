@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>HELPFit</title>
+  <title>HELPFit | Sign Up</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="signup.css">
   <link rel="stylesheet" href="nav.css">
   <link rel="stylesheet" href="login.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
 
 </head>
 <body>
@@ -23,7 +24,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="home.php">HELPFit</a>
+        <a class="navbar-brand" href="home.php"><img src="icons/helpfitlogosmall.png"></a>
       </div>
       <div>
         <div class="collapse navbar-collapse" id="myNavbar">
@@ -144,19 +145,27 @@
     					</div>
 
     					<div id="member-signup">
-    						<label for="level" class="label" style="text-align:center">TRAINING LEVEL </label>
-    						<label class="radio">
-    						  <input type="radio" id="beginner" name="level" value="beginner" checked>
-    						  <div class="choice">Beginner</div>
-    						</label>
-    						<label class="radio">
-    						  <input type="radio" id="intermediate" name="level" value="intermediate">
-    						  <div class="choice">Intermediate</div>
-    						</label>
-    						<label class="radio">
-    						  <input type="radio" id="expert" name="level" value="expert">
-    						  <div class="choice">Expert</div>
-    						</label>
+        				<label for="level" class="label" style="text-align:center">TRAINING LEVEL </label>
+                <div class="row">
+                  <div class="col-sm-12 col-lg-4">
+        						<label class="radio">
+        						  <input type="radio" id="beginner" name="level" value="beginner" checked>
+        						  <div class="choice">Beginner</div>
+        						</label>
+                  </div>
+                  <div class="col-sm-12 col-lg-4">
+        						<label class="radio">
+        						  <input type="radio" id="intermediate" name="level" value="intermediate">
+        						  <div class="choice">Intermediate</div>
+        						</label>
+                  </div>
+                  <div class="col-sm-12 col-lg-4">
+        						<label class="radio">
+        						  <input type="radio" id="expert" name="level" value="expert">
+        						  <div class="choice">Expert</div>
+        						</label>
+                  </div>
+                </div>
     					</div>
 
     					<div id="trainer-signup">

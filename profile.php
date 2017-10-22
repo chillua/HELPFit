@@ -16,7 +16,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>HELPFit</title>
+  <title>HELPFit | Profile</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -25,6 +25,7 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
   <link rel="stylesheet" href="profile.css">
   <link rel="stylesheet" href="nav.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
 
 </head>
 <body>
@@ -37,7 +38,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="member_main.php">HELPFit</a>
+      <a class="navbar-brand" href="member_main.php"><img src="icons/helpfitlogosmall.png"></a>
     </div>
     <div>
       <div class="collapse navbar-collapse" id="myNavbar">
@@ -94,9 +95,9 @@
                 <?php }else{ ?>
                 <p><?php echo $_SESSION['trainer']['specialty']; ?> master</p>
               <?php }} ?>
-              <h5>[ <?php echo $_SESSION['user']['username'];?> ]</h5>
+              <h5 id="username_disp">[ <?php echo $_SESSION['user']['username'];?> ]</h5>
               <br />
-              <div class="chgpswd"><a href="change_password.php">Change Password</a></div>
+              <div class="chgpswd" id="chgpswd"><a href="change_password.php">Change Password</a></div>
             </div>
             <hr />
             <div class="form-group">
@@ -110,18 +111,26 @@
 
             <div id="member-edit">
               <label for="level" class="label" style="text-align:center">TRAINING LEVEL </label>
-              <label class="radio">
-                <input type="radio" id="beginner" name="level" value="beginner" <?php if ($_SESSION['member']['level'] == "beginner") print "checked"; ?>>
-                <div class="choice">Beginner</div>
-              </label>
-              <label class="radio">
-                <input type="radio" id="intermediate" name="level" value="intermediate" <?php if ($_SESSION['member']['level'] == "intermediate") print "checked"; ?>>
-                <div class="choice">Intermediate</div>
-              </label>
-              <label class="radio">
-                <input type="radio" id="expert" name="level" value="expert" <?php if ($_SESSION['member']['level'] == "expert") print "checked"; ?>>
-                <div class="choice">Expert</div>
-              </label>
+              <div class="row">
+                <div class="col-sm-12 col-lg-4">
+                  <label class="radio">
+                    <input type="radio" id="beginner" name="level" value="beginner" <?php if ($_SESSION['member']['level'] == "beginner") print "checked"; ?>>
+                    <div class="choice">Beginner</div>
+                  </label>
+                </div>
+                <div class="col-sm-12 col-lg-4">
+                  <label class="radio">
+                    <input type="radio" id="intermediate" name="level" value="intermediate" <?php if ($_SESSION['member']['level'] == "intermediate") print "checked"; ?>>
+                    <div class="choice">Intermediate</div>
+                  </label>
+                </div>
+                <div class="col-sm-12 col-lg-4">
+                  <label class="radio">
+                    <input type="radio" id="expert" name="level" value="expert" <?php if ($_SESSION['member']['level'] == "expert") print "checked"; ?>>
+                    <div class="choice">Expert</div>
+                  </label>
+                </div>
+              </div>
             </div>
 
             <div id="trainer-edit">

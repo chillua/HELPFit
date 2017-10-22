@@ -23,6 +23,15 @@
   #myNavbar{
     text-align: center;
   }
+
+  #myNavbar .navbar-left{
+    margin-top: -10px !important;
+    padding:0 !important;
+  }
+
+  .navbar-brand{
+    margin-top:-5px;
+  }
 }
 
 
@@ -34,6 +43,10 @@
     background: #fff;
 }
 
+.navbar img{
+  height: 35px;
+  margin: -8px;
+}
 /* Add a dark background color with a little bit see-through */
 .navbar {
     margin-bottom: 0;

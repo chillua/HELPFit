@@ -16,7 +16,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>HELPFit</title>
+  <title>HELPFit | Change Password</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -25,7 +25,7 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
   <link rel="stylesheet" href="profile.css">
   <link rel="stylesheet" href="nav.css">
-
+  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
 </head>
 <body>
 
@@ -37,7 +37,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="member_main.php">HELPFit</a>
+      <a class="navbar-brand" href="member_main.php"><img src="icons/helpfitlogosmall.png"></a>
     </div>
     <div>
       <div class="collapse navbar-collapse" id="myNavbar">
@@ -67,12 +67,12 @@
   <div class="col-xs-12 col-sm-12 col-sm-offset-0 col-lg-6 col-lg-offset-3">
     <div class="profile-wrap">
       <div class="profile-container">
-        <h1><strong>Change Password</strong></h1>
+        <h1 class="black-font"><strong>Change Password</strong></h1>
         <?php echo display_error(); ?>
         <div class="profile-form">
           <form id="chgpassword" action="#" method="post" autocomplete="off" >
             <div class="form-group">
-              <label for="curr_password" class="label">CURRENT PASSWORD</label>
+              <label for="curr-password" class="label">CURRENT PASSWORD</label>
               <input id="curr_password" type="password" name="curr_password" class="form-control" placeholder="Current Password" required>
             </div>
             <div class="form-group">
@@ -92,7 +92,12 @@
     </div>
   </div>
 </div>
-<script>
-</script>
+
+<footer class="text-center">
+  <a class="up-arrow" href="#home" data-toggle="tooltip" title="TO TOP">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a><br><br>
+  <p>Copyright &copy; 2017 HELPFit</p>
+</footer>
 </body>
 </html>

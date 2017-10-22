@@ -1,7 +1,7 @@
 body{
-  background-image: url('images/edituser.jpg');
+  background-image: url('images/createsession.jpg');
   background-size:cover;
-  background-position:left;
+  background-position:right;
 }
 
 .alert-success{
@@ -45,7 +45,7 @@ body{
 	padding:35px 40px 30px 40px;
 	background: rgba(255,255,255,.9);
 	border-radius: 20px;
-	box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+	box-shadow: 0 3px 6px rgba(0,0,0,0.1);
 }
 
 .session-form .form-group{
@@ -71,33 +71,33 @@ body{
 }
 .session-form .form-control:focus {border:0.5px solid #70A7A6; }
 
-.session-form #name{
-	background: url(smallicons/user.png) no-repeat scroll 16px 8px;
-	background-color: rgba( 210, 207, 207, 0.2);
+.session-form #title{
+	background: url(smallicons/title.png) no-repeat scroll 16px 8px;
+	background-color: rgba( 255, 255, 255, 0.9);
 	padding-left:50px;
 }
 
-.session-form #email{
-	background: url(smallicons/mail.png) no-repeat scroll 16px 8px;
-	background-color: rgba( 210, 207, 207, 0.2);
+.session-form #date{
+	background: url(smallicons/date.png) no-repeat scroll 16px 8px;
+	background-color: rgba( 255, 255, 255, 0.9);
 	padding-left:50px;
 }
 
-.session-form #password{
-	background: url(smallicons/lock.png) no-repeat scroll 16px 8px;
-	background-color: rgba( 210, 207, 207, 0.2);
+.session-form #time{
+	background: url(smallicons/time.png) no-repeat scroll 16px 8px;
+	background-color: rgba( 255, 255, 255, 0.9);
 	padding-left:50px;
 }
 
-.session-form #confirm_password{
-	background: url(smallicons/lock.png) no-repeat scroll 16px 8px;
-	background-color: rgba( 210, 207, 207, 0.2);
+.session-form #fee{
+	background: url(smallicons/rm.png) no-repeat scroll 16px 8px;
+	background-color: rgba( 255, 255, 255, 0.9);
 	padding-left:50px;
 }
 
-.session-form #specialty{
-	background: url(smallicons/specialty.png) no-repeat scroll 16px 8px;
-	background-color: rgba( 210, 207, 207, 0.2);
+.session-form #max_pax{
+	background: url(smallicons/pax.png) no-repeat scroll 16px 8px;
+	background-color: rgba( 255, 255, 255, 0.9);
 	padding-left:50px;
 }
 
@@ -110,7 +110,7 @@ body{
 	font-weight:bold;
 	font-size: 95%;
 	background-color: #70A7A6;
-	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	box-shadow: 0 3px 6px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.2);
 	border-radius: 20px;
 	border:none;
 	padding:10px 20px;
@@ -143,4 +143,5 @@ body{
 	display: none;
 	color: #E2947F;
 	text-align: center;
+  margin-top: -20px;
 }

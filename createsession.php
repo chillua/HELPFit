@@ -19,7 +19,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>HELPFit</title>
+  <title>HELPFit | Create Training Session</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -28,7 +28,7 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
   <link rel="stylesheet" href="createsession.css">
   <link rel="stylesheet" href="nav.css">
-
+  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
 </head>
 <body>
 
@@ -40,7 +40,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#home">HELPFit</a>
+      <a class="navbar-brand" href="#home"><img src="icons/helpfitlogosmall.png"></a>
     </div>
     <div>
       <div class="collapse navbar-collapse" id="myNavbar">
@@ -59,17 +59,18 @@
   </div>
 </nav>
 <div class="container main-container">
-  <div class="col-xs-12 col-sm-12 col-sm-offset-0 col-lg-6 col-lg-offset-3">
+  <div class="col-xs-12 col-sm-12 col-sm-offset-0 col-lg-7 col-lg-offset-5">
     <div class="profile-wrap">
       <div class="profile-container">
         <h1><strong>New Training Session</strong></h1>
-        <?php if (isset($_SESSION['success_edit'])) : ?>
+        <?php echo display_error(); ?>
+        <?php if (isset($_SESSION['success_createsession'])) : ?>
           <div class="alert alert-success alert-dismissible">
           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
           <strong>
               <?php
-                echo $_SESSION['success_edit'];
-                unset($_SESSION['success_edit']);
+                echo $_SESSION['success_createsession'];
+                unset($_SESSION['success_createsession']);
               ?>
             </strong>
             </h1>
@@ -82,13 +83,13 @@
               <div class="row">
                 <div class="col-sm-12 col-lg-6">
                   <label class="radio">
-                    <input type="radio" id="radio-personal" name="training_type" value="personal" onclick="showPersonal(); showErrorMsg();" required>
+                    <input type="radio" id="radio-personal" name="training_type" value="personal" onclick="showPersonal(); showErrorMsg(); showErrorMsgSdm();" required>
                     <div class="choice">Personal Training</div>
                   </label>
                 </div>
                 <div class="col-sm-12 col-lg-6">
                   <label class="radio">
-                    <input type="radio" id="radio-group" name="training_type" value="group"  onclick="showGroup(); showErrorMsg();" required>
+                    <input type="radio" id="radio-group" name="training_type" value="group"  onclick="showGroup(); showErrorMsg(); " required>
                     <div class="choice">Group Training</div>
                   </label>
                 </div>
@@ -113,31 +114,31 @@
             </div>
             <div class="form-group">
               <label for="fee" class="label">FEE</label>
-              <input id="fee" type="number" name="fee" class="form-control" placeholder="Fee" required>
+              <input id="fee" type="number" name="fee" class="form-control" placeholder="0.00" required>
             </div>
             <div id="group-training">
             <div class="form-group">
                 <label for="max_pax" class="label">MAX PARTICIPANTS</label>
-              <input id="max_pax" type="number" name="max_pax" class="form-control" placeholder="Maximum Participants" required>
+              <input id="max_pax" type="number" name="max_pax" class="form-control" placeholder="e.g. 30">
             </div>
             <div class="form-group">
               <label for="class_type" class="label label-center">CLASS TYPE</label>
               <div class="row">
                 <div class="col-sm-12 col-lg-4">
                   <label class="radio">
-                    <input type="radio" id="radio-sport" name="class_type" value="sport" onclick="showErrorMsgSdm();"required>
+                    <input type="radio" id="radio-sport" name="class_type" value="sport" onclick="showErrorMsgSdm();">
                     <div class="choice">Sport</div>
                   </label>
                 </div>
                 <div class="col-sm-12 col-lg-4">
                   <label class="radio">
-                    <input type="radio" id="radio-dance" name="class_type" value="dance" onclick="showErrorMsgSdm();"required>
+                    <input type="radio" id="radio-dance" name="class_type" value="dance" onclick="showErrorMsgSdm();">
                     <div class="choice">Dance</div>
                   </label>
                 </div>
                 <div class="col-sm-12 col-lg-4">
                   <label class="radio">
-                    <input type="radio" id="radio-mma" name="class_type" value="mma" onclick="showErrorMsgSdm();"required>
+                    <input type="radio" id="radio-mma" name="class_type" value="mma" onclick="showErrorMsgSdm();">
                     <div class="choice">MMA</div>
                   </label>
                 </div>
@@ -146,7 +147,7 @@
           </div>
           <div id="error-msg-sdm">Please select sport, dance or MMA type of training.</div>
             <div class="form-group">
-              <button type="submit" name="createsession" class="button" style="margin-top:10px;" onclick="showErrorMsg();">Create</button>
+              <button type="submit" name="createsession" class="button" style="margin-top:10px;" onclick="showErrorMsg(); showErrorMsgSdm();">Create</button>
             </div>
           </form>
         </div>
@@ -164,6 +165,7 @@
 </footer>
 
 <script>
+
 // to check if the radio buttons are selected
 function showErrorMsg(){
   if(!document.getElementById("radio-group").checked && !document.getElementById("radio-personal").checked) {
@@ -173,10 +175,15 @@ function showErrorMsg(){
   }
 }
 function showErrorMsgSdm(){
-  if(!document.getElementById("radio-mma").checked && !document.getElementById("radio-sport").checked
-      && !document.getElementById("radio-dance").checked) {
-    document.getElementById('error-msg-sdm').style.display = 'block';
-  }else{
+  if (document.getElementById("radio-group").checked){
+    if(!document.getElementById("radio-mma").checked && !document.getElementById("radio-sport").checked
+        && !document.getElementById("radio-dance").checked) {
+      document.getElementById('error-msg-sdm').style.display = 'block';
+    }else{
+      document.getElementById('error-msg-sdm').style.display = 'none';
+    }
+  }
+  else{
     document.getElementById('error-msg-sdm').style.display = 'none';
   }
 }
@@ -186,9 +193,21 @@ function showErrorMsgSdm(){
 function showPersonal(){
   document.getElementById('group-training').style.display = 'none';
 }
-function showGroup(){
-  document.getElementById('group-training').style.display = 'block';
-}
+$(document).ready(function(){
+  $('#radio-group').change(function () {
+      if($(this).is(':checked')) {
+          $('#radio-sport').attr('required');
+          $('#max_pax').attr('required');
+          $('#group-training').css("display","block");
+          $('#error-msg-pg').css("display","none");
+      } else {
+          $('#radio-sport').removeAttr('required');
+          $('#max_pax').removeAttr('required');
+          $('#group-training').css("display","none");
+      }
+  });
+});
+
 </script>
 </body>
 </html>
