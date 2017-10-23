@@ -105,8 +105,9 @@ if (isset($_SESSION['user'])) {
 <div id="about" class="container-fluid">
   <div class="col-xs-12 col-sm-12 col-sm-offset-0 col-lg-6 col-lg-offset-3">
   <h1>About Us</h1>
-  <p>We are a company that is motivated to bring fitness into your daily into your life unlike
-	any other company. We will help you experience training under a trainer without them constantly being next to you.
+  <p>We are a company that is motivated to bring fitness into your daily life unlike any other company. We act as a platform to connect fitness trainers and fitness enthusiasts - You are able to sign up as a fitness member or a fitness trainer.
+    <br><br>For members, we will help you experience training under a trainer with just one click of a button. You will be able to join personal or group trainings such as dance, MMA or sport. Not enough money for a gym subscription? Not enough time to travel places? HELPFit is here to solve your problems!
+    <br><br>For trainers, you will be able to set up training sessions according to your schedule and get customers with just one click! You are also able to keep track of your schedule all the time.
 	<br><br><br><img src="icons/helpfitlogosmall.png"></p>
   <br><br><br>
 </div>
@@ -137,7 +138,7 @@ if (isset($_SESSION['user'])) {
     <div class="col-sm-6">
       <img src="icons/feedback.png">
       <h4>Receive Feedback</h4>
-      <p>Give and receive feedbacks from your sessions</p>
+      <p>Receive feedbacks from your sessions to know if you've done well!</p>
     </div>
   </div>
 </div>
