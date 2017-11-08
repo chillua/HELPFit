@@ -165,8 +165,8 @@ h5{
 
 .profile-form .button{
 	width:100%;
-	font-family: "Raleway";
 	color:#fff;
+  font-family: 'Cabin',sans-serif;
 	font-weight:bold;
 	font-size: 95%;
 	background-color: #70A7A6;
@@ -176,6 +176,8 @@ h5{
 	padding:10px 20px;
 	display:block;
 	outline: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 .profile-form .button:hover{background: #E2947F;}
 .profile-form .radio {cursor: pointer; font-size: 90%;}

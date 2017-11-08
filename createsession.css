@@ -105,7 +105,7 @@ body{
 
 .session-form .button{
 	width:100%;
-	font-family: "Raleway";
+	font-family: "Cabin",sans-serif;
 	color:#fff;
 	font-weight:bold;
 	font-size: 95%;
@@ -116,6 +116,7 @@ body{
 	padding:10px 20px;
 	display:block;
 	outline: none;
+  letter-spacing: 2px;
 }
 .session-form .button:hover{background: #E2947F;}
 .session-form .radio {cursor: pointer; font-size: 90%;}
@@ -144,4 +145,42 @@ body{
 	color: #E2947F;
 	text-align: center;
   margin-top: -20px;
+}
+
+.ui-datepicker {
+  font-family: 'Montserrat',sans-serif;
+ }
+ .ui-datepicker-calendar .ui-state-active {
+   border-color: #70A7A6;
+   background-color: #70A7A6;
+   color: #fff;
+ }
+
+ .ui-datepicker-calendar .ui-state-hover {
+    background: #E2947F;
+    color: #FFFFFF;
+    border-color: #E2947F;
+}
+
+.ui-datepicker-today a.ui-state-highlight {
+    background: #E2C68A;
+    border: 1px solid #CEB47E;
+}
+.ui-datepicker-today.ui-datepicker-current-day a.ui-state-highlight {
+    background: #E2C68A;
+    border: 1px solid #CEB47E;
+}
+
+.ui-widget-content{
+  border-radius: 10px;
+}
+
+.ui-datepicker-calendar .ui-state-default {
+  border-radius: 10px;
+  text-align: center;
+  width: 30px;
+}
+
+.ui-datepicker-header {
+    border-radius: 10px;
 }

@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway|Cabin" rel="stylesheet">
   <link rel="stylesheet" href="profile.css">
   <link rel="stylesheet" href="nav.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon"/>
@@ -46,7 +46,7 @@
           <?php if (isset($_SESSION['member'])) {?>
             <li><a href="member_main.php">Home</a></li>
             <li><a href="profile.php" class="active-page">Profile</a></li>
-            <li><a href="#">Join Sessions</a></li>
+            <li><a href="view_sessions.php">Join Sessions</a></li>
             <li><a href="#">View History</a></li>
           <?php }else{ ?>
             <li><a href="trainer_main.php">Home</a></li>
@@ -68,7 +68,7 @@
   <div class="col-xs-12 col-sm-12 col-sm-offset-0 col-lg-6 col-lg-offset-3">
     <div class="profile-wrap">
       <div class="profile-container">
-        <h1><strong>Profile</strong></h1>
+        <h1><strong>PROFILE</strong></h1>
         <?php if (isset($_SESSION['success_edit'])) : ?>
           <div class="alert alert-success alert-dismissible">
           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -78,7 +78,6 @@
                 unset($_SESSION['success_edit']);
               ?>
             </strong>
-            </h1>
           </div>
         <?php endif ?>
         <div class="profile-form">
@@ -138,7 +137,7 @@
               <input id="specialty" type="text" name="specialty" class="form-control" placeholder="Specialty" value="<?php echo $_SESSION['trainer']['specialty']; ?>">
             </div>
             <div class="form-group">
-              <button type="submit" name="edit" class="button" style="margin-top:10px;">Confirm Edit</button>
+              <button type="submit" name="edit" class="button" style="margin-top:10px;">Save Changes</button>
             </div>
           </form>
         </div>
@@ -147,7 +146,7 @@
   </div>
 </div>
 <footer class="text-center">
-  <a class="up-arrow" href="#home" data-toggle="tooltip" title="TO TOP">
+  <a class="up-arrow" href="#top" data-toggle="tooltip" title="TO TOP">
     <span class="glyphicon glyphicon-chevron-up"></span>
   </a><br><br>
   <p>Copyright &copy; 2017 HELPFit</p>

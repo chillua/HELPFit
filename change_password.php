@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway|Cabin" rel="stylesheet">
   <link rel="stylesheet" href="profile.css">
   <link rel="stylesheet" href="nav.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon"/>
@@ -67,9 +67,8 @@
   <div class="col-xs-12 col-sm-12 col-sm-offset-0 col-lg-6 col-lg-offset-3">
     <div class="profile-wrap">
       <div class="profile-container">
-        <h1 class="black-font"><strong>Change Password</strong></h1>
         <?php echo display_error(); ?>
-        <div class="profile-form">
+        <div class="profile-form" style="margin-top:50px;">
           <form id="chgpassword" action="#" method="post" autocomplete="off" >
             <div class="form-group">
               <label for="curr-password" class="label">CURRENT PASSWORD</label>

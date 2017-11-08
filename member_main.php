@@ -1,7 +1,6 @@
 <?php
   include('server.php');
   if (!isset($_SESSION['user'])) {
-    $_SESSION['msg'] = "You must log in first";
   	header('location: home.php');
   }
 
@@ -49,7 +48,7 @@
         <ul class="nav navbar-nav">
           <li><a href="member_main.php" class="active-page">Home</a></li>
           <li><a href="profile.php">Profile</a></li>
-          <li><a href="#">Join Sessions</a></li>
+          <li><a href="view_sessions.php">Join Sessions</a></li>
           <li><a href="#">View History</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -82,7 +81,7 @@
 		<?php endif ?>
 	</div>
   <footer class="text-center">
-    <a class="up-arrow" href="#home" data-toggle="tooltip" title="TO TOP">
+    <a class="up-arrow" href="#top" data-toggle="tooltip" title="TO TOP">
       <span class="glyphicon glyphicon-chevron-up"></span>
     </a><br><br>
     <p>Copyright &copy; 2017 HELPFit</p>

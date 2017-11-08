@@ -257,7 +257,7 @@ if (isset($_POST['change_password'])) {
 if (isset($_POST['createsession'])) {
   $training_type = mysqli_real_escape_string($db, $_POST['training_type']);
   $title = trim(mysqli_real_escape_string($db, $_POST['title']));
-  $date = $_POST['date'];
+  $date = DateTime::createFromFormat('d/m/Y', $_POST['date'])->format('Y-m-d');
   $time = $_POST['time'];
   $fee = $_POST['fee'];
   $max_pax = $_POST['max_pax'];
@@ -270,12 +270,12 @@ if (isset($_POST['createsession'])) {
   if (empty($fee)) { array_push($errors, "Fee is required."); }
 
   if($training_type == "group"){
-    if (empty($max_pax)) { array_push($errors, "Password is required."); }
+    if (empty($max_pax)) { array_push($errors, "Maximum participants is required."); }
     if (empty($class_type)) { array_push($errors, "Please choose a training class type."); }
   }
 
   $user_id = $_SESSION['user']['user_id'];
-  $status = true; //status set as available
+  $status = "available"; //status set as available
   if (count($errors) == 0) {
     $query = "INSERT INTO trainingsession (title, date, time, fee, status, trainer_id, training_type)
 				  VALUES('$title','$date', '$time','$fee','$status','$user_id','$training_type')";

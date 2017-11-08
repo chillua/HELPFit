@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway|Cabin" rel="stylesheet">
   <link rel="stylesheet" href="signup.css">
   <link rel="stylesheet" href="nav.css">
   <link rel="stylesheet" href="login.css">
@@ -90,7 +90,8 @@
     <div class="col-xs-12 col-sm-12 col-sm-offset-0 col-lg-6 col-lg-offset-3">
       <div class="signup-wrap">
         <div class="signup-container">
-          <h1><strong>Sign Up</strong></h1>
+          <h1><strong>SIGN UP</strong></h1>
+          <hr>
           <?php echo display_error(); ?>
           <?php if(isset($_SESSION['success_signup'])) : ?>
             <div class="alert alert-success alert-dismissible">
@@ -174,7 +175,7 @@
     					</div>
               <div id="error-msg-mt">Please select to be a member or a trainer.</div>
               <div class="form-group">
-                <button type="submit" name="signup" class="button" style="margin-top:10px;" onclick="showErrorMsg();">Sign Up</button>
+                <button type="submit" name="signup" class="button" style="margin-top:10px;letter-spacing:2px;" onclick="showErrorMsg();">SIGN UP</button>
               </div>
             </form>
           </div>

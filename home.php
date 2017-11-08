@@ -49,7 +49,7 @@ if (isset($_SESSION['user'])) {
     </div>
   </div>
 </nav>
-<div id="home" class="container main-container ">
+<div id="home" class="container main-container" data-type="background" data-speed="5">
   <div class = "main-header" id="main-header">
     <h3>HELPFit</h3>
     <br> Practice build brains <br> in your muscles. <br>
@@ -103,8 +103,8 @@ if (isset($_SESSION['user'])) {
 
 
 <div id="about" class="container-fluid">
-  <div class="col-xs-12 col-sm-12 col-sm-offset-0 col-lg-6 col-lg-offset-3">
   <h1>About Us</h1>
+  <div class="col-xs-12 col-sm-12 col-sm-offset-0 col-lg-6 col-lg-offset-3 slideanim">
   <p>We are a company that is motivated to bring fitness into your daily life unlike any other company. We act as a platform to connect fitness trainers and fitness enthusiasts - You are able to sign up as a fitness member or a fitness trainer.
     <br><br>For members, we will help you experience training under a trainer with just one click of a button. You will be able to join personal or group trainings such as dance, MMA or sport. Not enough money for a gym subscription? Not enough time to travel places? HELPFit is here to solve your problems!
     <br><br>For trainers, you will be able to set up training sessions according to your schedule and get customers with just one click! You are also able to keep track of your schedule all the time.
@@ -113,32 +113,34 @@ if (isset($_SESSION['user'])) {
 </div>
 </div>
 
-<div id="services" class="container-fluid">
+<div id="services" class="container-fluid" data-type="background" data-speed="5">
   <h1>Our Services</h1>
-  <div id="outer-div-member" class="col-sm-6">
-    <h2><b>Be a Member</b></h2>
-    <div class="col-sm-6">
-      <img src="icons/book.png">
-      <h4>Book Sessions</h4>
-      <p>Book yourself onto any of our available training sessions.</p>
+  <div class="container slideanim">
+    <div id="outer-div-member" class="col-sm-6">
+      <h2><b>Be a Member</b></h2>
+      <div class="col-sm-6">
+        <img src="icons/book.png">
+        <h4>Book Sessions</h4>
+        <p>Book yourself onto any of our available training sessions.</p>
+      </div>
+      <div class="col-sm-6">
+        <img src="icons/rate.png">
+        <h4>Review Trainer</h4>
+        <p>Rate your experience with your trainers.</p>
+      </div>
     </div>
-    <div class="col-sm-6">
-      <img src="icons/rate.png">
-      <h4>Review Trainer</h4>
-      <p>Rate your experience with your trainers.</p>
-    </div>
-  </div>
-  <div id="outer-div-trainer" class="col-sm-6">
-    <h2><b>Be a Trainer</b></h2>
-    <div class="col-sm-6">
-      <img src="icons/create.png">
-      <h4>Create Sessions</h4>
-      <p>Create a new training sessions and get going right away!</p>
-    </div>
-    <div class="col-sm-6">
-      <img src="icons/feedback.png">
-      <h4>Receive Feedback</h4>
-      <p>Receive feedbacks from your sessions to know if you've done well!</p>
+    <div id="outer-div-trainer" class="col-sm-6">
+      <h2><b>Be a Trainer</b></h2>
+      <div class="col-sm-6">
+        <img src="icons/create.png">
+        <h4>Create Sessions</h4>
+        <p>Create a new training sessions and get going right away!</p>
+      </div>
+      <div class="col-sm-6">
+        <img src="icons/feedback.png">
+        <h4>Receive Feedback</h4>
+        <p>Receive feedbacks from your sessions to know if you've done well!</p>
+      </div>
     </div>
   </div>
 </div>
@@ -147,37 +149,31 @@ if (isset($_SESSION['user'])) {
   <h1>Why Us?</h1>
   <div class="col-sm-4">
     <h3><strong>Easy Access</strong></h3><hr>
-    <div class="img-wrapper">
-      <img src="images/ben1.jpg" class="img-circle service">
-      <div class="moreinfo">
-        <p>This website is easily accessible through most of your daily devices</p>
-      </div>
+    <img id="ben1" src="images/ben1.jpg" class="img-circle service slideanim">
+    <div class="moreinfo slideanim">
+      <p>This website is easily accessible through most of your daily devices.</p>
     </div>
   </div>
   <div class="col-sm-4">
     <h3><strong>Flexibility</strong></h3><hr>
-    <div class="img-wrapper">
-      <img src="images/ben2.jpg" class="img-circle service">
-      <div class="moreinfo">
-        <p>You can access this anytime and anywhere you wish to.</p>
-      </div>
+    <img id="ben2" src="images/ben2.jpg" class="img-circle service slideanim">
+    <div class="moreinfo slideanim">
+      <p>You can access this anytime and anywhere you wish to.</p>
     </div>
   </div>
   <div class="col-sm-4">
     <h3><strong>Time-Saving</strong></h3><hr>
-    <div class="img-wrapper">
-      <img src="images/ben3.jpg" class="img-circle service">
-      <div class="moreinfo">
-        <p>With the convenience at hand its obvious that with this website you are bound to save your precious time.</p>
-      </div>
+    <img id="ben3" src="images/ben3.jpg" class="img-circle service slideanim">
+    <div class="moreinfo slideanim">
+      <p>With the convenience at hand its obvious that with this website you are bound to save your precious time.</p>
     </div>
   </div>
 </div>
 
 
-<div id="contact" class="container-fluid">
+<div id="contact" class="container-fluid" data-type="background" data-speed="5">
   <h1>Contact Us</h1>
-  <div class="row test">
+  <div class="container">
     <div class="col-md-4">
       <p>Any Questions? Any problems? Contact us!</p>
       <p><span class="glyphicon glyphicon-map-marker"></span>&nbsp;&nbsp;KL, Malaysia</p>
@@ -220,6 +216,7 @@ if (isset($_SESSION['user'])) {
 <?php  if (count($errors_login) > 0) : ?>
   $('#loginModal').modal('show');
 <?php  endif ?>
+
 $(document).ready(function(){
   $('body').scrollspy({target: ".navbar", offset: 50});
   $("#myNavbar a, footer a[href='#home']").on('click', function(event) {
@@ -233,7 +230,39 @@ $(document).ready(function(){
       });
     }
   });
+
+  $(window).scroll(function() {
+    $(".slideanim").each(function(){
+      var pos = $(this).offset().top;
+
+      var winTop = $(window).scrollTop();
+        if (pos < winTop + 600) {
+          $(this).addClass("slide");
+        }
+    });
+  });
 });
+$(document).ready(function(){
+
+  var $window = $(window); //You forgot this line in the above example
+
+  $('div[data-type="background"]').each(function(){
+    var $bgobj = $(this); // assigning the object
+    $(window).scroll(function() {
+      var yPos = -( ($window.scrollTop() - $bgobj.offset().top) / $bgobj.data('speed'));
+      // Put together our final background position
+      var coords = '50% '+ yPos + 'px';
+      // Move the background
+      $bgobj.css({ backgroundPosition: coords,
+                  '-webkit-background-size': 'cover',
+                  '-moz-background-size': 'cover',
+                  '-o-background-size': 'cover',
+                  'background-size': 'cover'
+      });
+    });
+  });
+});
+
 $(document).click(function (event) {
     var clickover = $(event.target);
     var $navbar = $(".navbar-collapse");
@@ -242,6 +271,7 @@ $(document).click(function (event) {
         $navbar.collapse('hide');
     }
 });
+
 </script>
 
 </body>

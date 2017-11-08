@@ -82,7 +82,7 @@
   <?php endif ?>
 </div>
 <footer class="text-center">
-  <a class="up-arrow" href="#home" data-toggle="tooltip" title="TO TOP">
+  <a class="up-arrow" href="#top" data-toggle="tooltip" title="TO TOP">
     <span class="glyphicon glyphicon-chevron-up"></span>
   </a><br><br>
   <p>Copyright &copy; 2017 HELPFit</p>

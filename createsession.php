@@ -25,7 +25,11 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway|Cabin" rel="stylesheet">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <link rel="stylesheet" href="createsession.css">
   <link rel="stylesheet" href="nav.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon"/>
@@ -62,7 +66,8 @@
   <div class="col-xs-12 col-sm-12 col-sm-offset-0 col-lg-7 col-lg-offset-5">
     <div class="profile-wrap">
       <div class="profile-container">
-        <h1><strong>New Training Session</strong></h1>
+        <h1><strong>CREATE A SESSION</strong></h1>
+        <hr>
         <?php echo display_error(); ?>
         <?php if (isset($_SESSION['success_createsession'])) : ?>
           <div class="alert alert-success alert-dismissible">
@@ -83,13 +88,13 @@
               <div class="row">
                 <div class="col-sm-12 col-lg-6">
                   <label class="radio">
-                    <input type="radio" id="radio-personal" name="training_type" value="personal" onclick="showPersonal(); showErrorMsg(); showErrorMsgSdm();" required>
+                    <input type="radio" id="radio-personal" name="training_type" value="personal" onclick="showErrorMsg(); showErrorMsgSdm();" required>
                     <div class="choice">Personal Training</div>
                   </label>
                 </div>
                 <div class="col-sm-12 col-lg-6">
                   <label class="radio">
-                    <input type="radio" id="radio-group" name="training_type" value="group"  onclick="showGroup(); showErrorMsg(); " required>
+                    <input type="radio" id="radio-group" name="training_type" value="group"  onclick="showErrorMsg(); " required>
                     <div class="choice">Group Training</div>
                   </label>
                 </div>
@@ -104,7 +109,7 @@
               <div class="row">
                 <div class="col-sm-12 col-lg-6">
                 <label for="date" class="label">DATE</label>
-                <input id="date" type="date" name="date" class="form-control" required>
+                <input id="date" type="text" name="date" class="form-control" required>
               </div>
                 <div class="col-sm-12 col-lg-6">
                 <label for="time" class="label">TIME</label>
@@ -119,26 +124,26 @@
             <div id="group-training">
             <div class="form-group">
                 <label for="max_pax" class="label">MAX PARTICIPANTS</label>
-              <input id="max_pax" type="number" name="max_pax" class="form-control" placeholder="e.g. 30">
+              <input id="max_pax" type="number" name="max_pax" class="form-control" placeholder="e.g. 30" />
             </div>
             <div class="form-group">
               <label for="class_type" class="label label-center">CLASS TYPE</label>
               <div class="row">
                 <div class="col-sm-12 col-lg-4">
                   <label class="radio">
-                    <input type="radio" id="radio-sport" name="class_type" value="sport" onclick="showErrorMsgSdm();">
+                    <input type="radio" id="radio-sport" name="class_type" value="sport" onclick="showErrorMsgSdm();" />
                     <div class="choice">Sport</div>
                   </label>
                 </div>
                 <div class="col-sm-12 col-lg-4">
                   <label class="radio">
-                    <input type="radio" id="radio-dance" name="class_type" value="dance" onclick="showErrorMsgSdm();">
+                    <input type="radio" id="radio-dance" name="class_type" value="dance" onclick="showErrorMsgSdm();" />
                     <div class="choice">Dance</div>
                   </label>
                 </div>
                 <div class="col-sm-12 col-lg-4">
                   <label class="radio">
-                    <input type="radio" id="radio-mma" name="class_type" value="mma" onclick="showErrorMsgSdm();">
+                    <input type="radio" id="radio-mma" name="class_type" value="mma" onclick="showErrorMsgSdm();" />
                     <div class="choice">MMA</div>
                   </label>
                 </div>
@@ -147,7 +152,7 @@
           </div>
           <div id="error-msg-sdm">Please select sport, dance or MMA type of training.</div>
             <div class="form-group">
-              <button type="submit" name="createsession" class="button" style="margin-top:10px;" onclick="showErrorMsg(); showErrorMsgSdm();">Create</button>
+              <button type="submit" name="createsession" class="button" style="margin-top:10px;" onclick="showErrorMsg(); showErrorMsgSdm();">CREATE</button>
             </div>
           </form>
         </div>
@@ -158,7 +163,7 @@
 
 
 <footer class="text-center">
-  <a class="up-arrow" href="#home" data-toggle="tooltip" title="TO TOP">
+  <a class="up-arrow" href="#top" data-toggle="tooltip" title="TO TOP">
     <span class="glyphicon glyphicon-chevron-up"></span>
   </a><br><br>
   <p>Copyright &copy; 2017 HELPFit</p>
@@ -189,24 +194,30 @@ function showErrorMsgSdm(){
 }
 
 
-// display options
-function showPersonal(){
-  document.getElementById('group-training').style.display = 'none';
-}
-$(document).ready(function(){
-  $('#radio-group').change(function () {
-      if($(this).is(':checked')) {
-          $('#radio-sport').attr('required');
-          $('#max_pax').attr('required');
-          $('#group-training').css("display","block");
-          $('#error-msg-pg').css("display","none");
-      } else {
-          $('#radio-sport').removeAttr('required');
-          $('#max_pax').removeAttr('required');
-          $('#group-training').css("display","none");
-      }
-  });
+$('#radio-group').change(function () {
+    if($(this).is(':checked')) {
+        $('#radio-sport').prop('required',true);
+        $('#max_pax').prop('required',true);
+        $('#group-training').css("display","block");
+        $('#error-msg-pg').css("display","none");
+    }
 });
+
+$('#radio-personal').change(function () {
+    if($(this).is(':checked')) {
+      $('#radio-sport').prop('required',false);
+      $('#max_pax').prop('required',false);
+      $('#group-training').css("display","none");
+      $('#error-msg-pg').css("display","none");
+    }
+});
+
+$(function() {
+    $("#date").datepicker({minDate: 0,
+      dateFormat: 'dd/mm/yy'
+    });
+});
+$("#date").attr( 'readOnly' , 'true' );
 
 </script>
 </body>
