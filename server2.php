@@ -21,9 +21,16 @@
     if(isset($_SESSION['type'])){
       echo '<div class="training-container">';
       while ($row = mysqli_fetch_assoc($result)) {
-        //checks if member have already joined the training session
         $sessionID = $row['sessionID'];
         $member_id = $_SESSION['user']['user_id'];
+        //checks if session has already expired(completed) or not
+        $date = strtotime($row['date']);
+        if ($date < strtotime(date("Y-m-d"))){
+          $query = "UPDATE trainingsession SET status = 'completed' WHERE sessionID = '$sessionID'";
+          mysqli_query_or_die($query);
+        }
+
+        //checks if member have already joined the training session
         $joined = mysqli_query_or_die("SELECT * FROM membersession WHERE sessionID='$sessionID' AND member_id='$member_id'");
         if ($row['status'] == "available" && mysqli_num_rows($joined) == 0){
           //get the trainer
@@ -88,12 +95,18 @@
               }
               echo '</h3>';
             }
+
+            //calculate trainer's average rating
+            $trainer_id = $trainer_user['user_id'];
+            $query = mysqli_query_or_die("SELECT avg(rating) AS avg_rating FROM review WHERE trainer_id = '$trainer_id'");
+            $data = mysqli_fetch_assoc($query);
+            $avg_rating = round($data['avg_rating'],2);
             echo '</div>
                 <div class="col-xs-3 trainer-rate">
                   <p>BY TRAINER</p>
                   <h3 title="'.$trainer_user['name'].'">'.$trainer_user['name'].'</h3>
                   <h4 title="'.$trainer['specialty'].'">Specialty: '.$trainer['specialty'].'</h4>
-                  <span class="stars" data-rating="3.75" data-num-stars="5" ></span>
+                  <span class="stars" data-rating="'.$avg_rating.'" data-num-stars="5" ></span>
                 </div>
                 <div class="col-xs-2 join-div">
                 <label class="radio">
@@ -135,7 +148,7 @@
               <div class="col-xs-6 col-join-mobile">
                 <p class="label">Trainer: </p> <br>'.$trainer_user['name'].'</p>
                 <p class="label">Specialty: </p> <br>'.$trainer['specialty'].'</p>
-                <div class="stars-div"><span class="stars" data-rating="3.75" data-num-stars="5" title="3.75"></span></div>
+                <div class="stars-div"><span class="stars" data-rating="'.$avg_rating.'" data-num-stars="5"></span></div>
                 <div class="col-xs-12 join-mobile">
                 <label class="radio">
                     <input type="radio" name="join" class="btn join_btn_mobile" value="'.$sessionID.'">
@@ -264,32 +277,66 @@
             }
             echo '</h3>';
           }
+          //calculate trainer's average rating
+          $trainer_id = $trainer_user['user_id'];
+          $query = mysqli_query_or_die("SELECT avg(rating) AS avg_rating FROM review WHERE trainer_id = '$trainer_id'");
+          $data = mysqli_fetch_assoc($query);
+          $avg_rating = round($data['avg_rating'],2);
           echo '</div>
               <div class="col-xs-3 trainer-rate">
                 <p>BY TRAINER</p>
                 <h3 title="'.$trainer_user['name'].'">'.$trainer_user['name'].'</h3>
                 <h4 title="'.$trainer['specialty'].'">Specialty: '.$trainer['specialty'].'</h4>
-                <span class="stars" data-rating="3.75" data-num-stars="5" ></span>
+                <span class="stars" data-rating="'.$avg_rating.'" data-num-stars="5" ></span>
               </div>
               <div class="col-xs-2 join-div">
-              <label class="radio">
-                  <input type="radio" name="rate" class="btn join_btn" value="'.$sessionID.'">
+              <label class="radio">';
+
+              //search if user has already reviewed this session
+              $reviewed = mysqli_query_or_die("SELECT * FROM review WHERE sessionID='$sessionID' AND member_id='$member_id'");
+              if ($status_type == "completed" && mysqli_num_rows($reviewed) == 1){
+                echo '<input type="radio" value="'.$sessionID.' disabled">
+                <div class="btn-disabled"><p>
+                  <strong>REVIEWED';
+              }
+              else if ($status_type == "completed"){
+                  echo '<input type="radio" name="rate" value="'.$sessionID.'" class="btn join_btn" data-sid="'.$sessionID.'">
                   <div class="btn"><p>
-                    <strong>RATE<br />
-                    TRAINER</strong></p>
+                    <strong>
+                    REVIEW<br />TRAINER';
+                }
+              else{
+                echo '<input type="radio" value="'.$sessionID.' disabled">
+                <div class="btn-disabled"><p>
+                  <strong>JOINED';
+              }
+          echo '</strong></p>
                   </div>
                 </label>
               </div>
             </div>
           </div>
-
-          <aside class="rate">
-            <h3>Have a question for me?</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis totam distinctio molestiae exercitationem impedit ut libero. Sit accusamus consectetur distinctio nesciunt quae nobis consequatur facere.</p>
-            <form>
-              <textarea class="comments" name="comments" placeholder="Tell us what you feel!" font-weight="200" id="" cols="30" rows="7"></textarea>
-            </form>
-          </aside>';
+          <aside class="rate rate'.$sessionID.'">
+            <h3>Rate '.$trainer_user['name'].'</h3>
+            <form id="review" action="#" method="post" autocomplete="off">
+            <div class="rate_stars">
+                <input class="rate_star rate_star-5" id="rate_star-5-'.$sessionID.'" type="radio" name="rate_star" value="5"/>
+                <label class="rate_star rate_star-5" for="rate_star-5-'.$sessionID.'"></label>
+                <input class="rate_star rate_star-4" id="rate_star-4-'.$sessionID.'" type="radio" name="rate_star" value="4"/>
+                <label class="rate_star rate_star-4" for="rate_star-4-'.$sessionID.'"></label>
+                <input class="rate_star rate_star-3" id="rate_star-3-'.$sessionID.'" type="radio" name="rate_star" value="3"/>
+                <label class="rate_star rate_star-3" for="rate_star-3-'.$sessionID.'"></label>
+                <input class="rate_star rate_star-2" id="rate_star-2-'.$sessionID.'" type="radio" name="rate_star" value="2"/>
+                <label class="rate_star rate_star-2" for="rate_star-2-'.$sessionID.'"></label>
+                <input class="rate_star rate_star-1" id="rate_star-1-'.$sessionID.'" type="radio" name="rate_star" value="1"/>
+                <label class="rate_star rate_star-1" for="rate_star-1-'.$sessionID.'"></label>
+            </div>
+            <input type = "hidden" name = "sessionID" value = "'.$sessionID.'" />
+            <input type = "hidden" name = "trainer_id" value = "'.$trainer_user['user_id'].'" />
+            <textarea class="comments" name="comments" placeholder="Tell us what you feel!" font-weight="200" id="" cols="30" rows="7"></textarea>
+            <button type="submit" name="review" class="button" style="margin-top:10px;">SUBMIT</button>
+          </form>
+        </aside>';
 
           //for mobile
           echo '<div class="panel mobile-panel">
@@ -319,7 +366,7 @@
             <div class="col-xs-6 col-join-mobile">
               <p class="label">Trainer: </p> <br>'.$trainer_user['name'].'</p>
               <p class="label">Specialty: </p> <br>'.$trainer['specialty'].'</p>
-              <div class="stars-div"><span class="stars" data-rating="3.75" data-num-stars="5" title="3.75"></span></div>
+              <div class="stars-div"><span class="stars" data-rating="'.$avg_rating.'" data-num-stars="5" title="3.75"></span></div>
               <div class="col-xs-12 join-mobile">
               <label class="radio">
                   <input type="radio" name="rate" class="btn join_btn_mobile" value="'.$sessionID.'">
@@ -340,5 +387,25 @@
         echo '</div>';
         unset($_SESSION['type']);
     }//end if type
+  }
+
+
+
+  //add review
+  if (isset($_POST['review'])) {
+    $rating = $_POST['rate_star'];
+  	$comments = trim(mysqli_real_escape_string($db, $_POST['comments']));
+  	$member_id = $_SESSION['user']['user_id'];
+    $trainer_id = $_POST['trainer_id'];
+    $sessionID = $_POST['sessionID'];
+    if (empty($rating)) { $_SESSION['error'] = "Please enter a rating with the stars."; }
+    if (!isset($_SESSION['error'])){
+      $query = "INSERT INTO review (rating,comments,trainer_id,member_id,sessionID)
+  				  VALUES('$rating','$comments', '$trainer_id','$member_id','$sessionID')";
+  		mysqli_query_or_die($query);
+      $_SESSION['success_review'] = "You have successfully submitted a review!";
+      header('location: #');
+      exit();
+    }
   }
 ?>
