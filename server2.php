@@ -316,27 +316,7 @@
               </div>
             </div>
           </div>
-          <aside class="rate rate'.$sessionID.'">
-            <h3>Rate '.$trainer_user['name'].'</h3>
-            <form id="review" action="#" method="post" autocomplete="off">
-            <div class="rate_stars">
-                <input class="rate_star rate_star-5" id="rate_star-5-'.$sessionID.'" type="radio" name="rate_star" value="5"/>
-                <label class="rate_star rate_star-5" for="rate_star-5-'.$sessionID.'"></label>
-                <input class="rate_star rate_star-4" id="rate_star-4-'.$sessionID.'" type="radio" name="rate_star" value="4"/>
-                <label class="rate_star rate_star-4" for="rate_star-4-'.$sessionID.'"></label>
-                <input class="rate_star rate_star-3" id="rate_star-3-'.$sessionID.'" type="radio" name="rate_star" value="3"/>
-                <label class="rate_star rate_star-3" for="rate_star-3-'.$sessionID.'"></label>
-                <input class="rate_star rate_star-2" id="rate_star-2-'.$sessionID.'" type="radio" name="rate_star" value="2"/>
-                <label class="rate_star rate_star-2" for="rate_star-2-'.$sessionID.'"></label>
-                <input class="rate_star rate_star-1" id="rate_star-1-'.$sessionID.'" type="radio" name="rate_star" value="1"/>
-                <label class="rate_star rate_star-1" for="rate_star-1-'.$sessionID.'"></label>
-            </div>
-            <input type = "hidden" name = "sessionID" value = "'.$sessionID.'" />
-            <input type = "hidden" name = "trainer_id" value = "'.$trainer_user['user_id'].'" />
-            <textarea class="comments" name="comments" placeholder="Tell us what you feel!" font-weight="200" id="" cols="30" rows="7"></textarea>
-            <button type="submit" name="review" class="button" style="margin-top:10px;">SUBMIT</button>
-          </form>
-        </aside>';
+          ';
 
           //for mobile
           echo '<div class="panel mobile-panel">
@@ -368,15 +348,55 @@
               <p class="label">Specialty: </p> <br>'.$trainer['specialty'].'</p>
               <div class="stars-div"><span class="stars" data-rating="'.$avg_rating.'" data-num-stars="5" title="3.75"></span></div>
               <div class="col-xs-12 join-mobile">
-              <label class="radio">
-                  <input type="radio" name="rate" class="btn join_btn_mobile" value="'.$sessionID.'">
-                  <div class="btn"><strong>RATE</strong>
+              <label class="radio">';
+              //search if user has already reviewed this session
+              //$reviewed = mysqli_query_or_die("SELECT * FROM review WHERE sessionID='$sessionID' AND member_id='$member_id'");
+              if ($status_type == "completed" && mysqli_num_rows($reviewed) == 1){
+                echo '<input type="radio" value="'.$sessionID.' disabled">
+                <div class="btn-disabled"><p>
+                  <strong>REVIEWED';
+              }
+              else if ($status_type == "completed"){
+                  echo '<input type="radio" name="rate" value="'.$sessionID.'" class="btn join_btn" data-sid="'.$sessionID.'">
+                  <div class="btn"><p>
+                    <strong>
+                    REVIEW<br />TRAINER';
+                }
+              else{
+                echo '<input type="radio" value="'.$sessionID.' disabled">
+                <div class="btn-disabled"><p>
+                  <strong>JOINED';
+              }
+                echo '</strong>
                   </div>
                 </label>
               </div>
             </div>
             </div>
           </div>';
+
+          //rate sect
+          echo'<aside class="rate rate'.$sessionID.'">
+            <h3>Rate '.$trainer_user['name'].'</h3>
+            <form id="review" action="#" method="post" autocomplete="off">
+            <div class="rate_stars">
+                <input class="rate_star rate_star-5" id="rate_star-5-'.$sessionID.'" type="radio" name="rate_star" value="5"/>
+                <label class="rate_star rate_star-5" for="rate_star-5-'.$sessionID.'"></label>
+                <input class="rate_star rate_star-4" id="rate_star-4-'.$sessionID.'" type="radio" name="rate_star" value="4"/>
+                <label class="rate_star rate_star-4" for="rate_star-4-'.$sessionID.'"></label>
+                <input class="rate_star rate_star-3" id="rate_star-3-'.$sessionID.'" type="radio" name="rate_star" value="3"/>
+                <label class="rate_star rate_star-3" for="rate_star-3-'.$sessionID.'"></label>
+                <input class="rate_star rate_star-2" id="rate_star-2-'.$sessionID.'" type="radio" name="rate_star" value="2"/>
+                <label class="rate_star rate_star-2" for="rate_star-2-'.$sessionID.'"></label>
+                <input class="rate_star rate_star-1" id="rate_star-1-'.$sessionID.'" type="radio" name="rate_star" value="1"/>
+                <label class="rate_star rate_star-1" for="rate_star-1-'.$sessionID.'"></label>
+            </div>
+            <input type = "hidden" name = "sessionID" value = "'.$sessionID.'" />
+            <input type = "hidden" name = "trainer_id" value = "'.$trainer_user['user_id'].'" />
+            <textarea class="comments" name="comments" placeholder="Tell us what you feel!" font-weight="200" id="" cols="30" rows="7"></textarea>
+            <button type="submit" name="review" class="button" style="margin-top:10px;">SUBMIT</button>
+          </form>
+        </aside>';
         }
       }// end while loop
       if ($none_available){
