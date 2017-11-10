@@ -382,7 +382,7 @@
 
           //rate sect
           echo'<aside class="rate rate'.$sessionID.'">
-            <h3>Rate '.$trainer_user['name'].'</h3>
+            <h3>Rate Trainer <p class="t_name">'.$trainer_user['name'].'</p></h3>
             <form id="review" action="#" method="post" autocomplete="off">
             <div class="rate_stars">
                 <input class="rate_star rate_star-5" id="rate_star-5-'.$sessionID.'" type="radio" name="rate_star" value="5"/>
@@ -563,7 +563,7 @@
               <div class="col-xs-6 col-join-mobile">
                 <div class="col-xs-12 join-mobile">
                 <label class="radio" style="margin-top:40px;">
-                    <input type="radio" name="edit" value="'.$sessionID.'" data-sid="'.$sessionID.'">
+                    <input type="radio" name="edit" value="'.$sessionID.'">
                     <div class="btn"><p>
                       <strong>
                       EDIT
@@ -630,5 +630,32 @@
       exit();
     }
 
+function printReviews(){
+  $trainer_id = $_SESSION['user']['user_id'];
+  $result = mysqli_query_or_die("SELECT * FROM review WHERE trainer_id='$trainer_id' ORDER BY review.timestamp DESC");
+  $none_available = true;
+  while ($row = mysqli_fetch_assoc($result)) {
+    $none_available = false;
+    $member_id = $row['member_id'];
+    $sessionID = $row['sessionID'];
+    //get member that reviewed
+    $member = mysqli_query_or_die("SELECT * FROM user WHERE user_id='$member_id'");
+    $member = mysqli_fetch_assoc($member);
 
+    //get session that is reviewed
+    $ses = mysqli_query_or_die("SELECT * FROM trainingsession WHERE sessionID='$sessionID'");
+    $ses = mysqli_fetch_assoc($ses);
+
+    echo '<a class="accordion-panel__heading" href="javascript:;"> By <p class="acc_header">'.$member['name'].'</p> for <p class="acc_header">'.$ses['title'].'</p><p class="timestamp">'.$row['timestamp'].'</p></a>
+    <div class="accordion-panel__content">
+        <h4><span class="stars" data-rating="'.$row['rating'].'" data-num-stars="5" ></span></h4>
+        <p>'.$row['comments'].'</p>
+    </div>';
+  }
+  if ($none_available){
+    echo '<div style="text-align:center"><h3 style="margin:90px 30px 90px 30px;color:#fff;">
+    You do not have any ratings yet.
+    </h3></div>';
+  }
+}
 ?>

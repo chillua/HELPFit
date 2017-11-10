@@ -10,10 +10,15 @@
   .main-container .training-container{margin-right: 0 !important;margin-left: 0 !important;padding-right: 0 !important;padding-left: 0 !important;}
   .main-container{padding-left: 0 !important;padding-right:0 !important;}
   .main-container h1{font-size: 150% !important;}
-  .main-container .choice {font-size: 100% !important;}
+  .main-container .choice {font-size: 100% !important;letter-spacing: 0 !important;}
   .mobile-panel .col-mobile .date-time{font-size: 70% !important;}
   .mobile-panel .col-mobile .notes-type{font-size: 76% !important;}
   .mobile-panel .col-mobile .mob_par{font-size: 76% !important;}
+  .rate h3{font-size: 120%;}
+
+  div.rate_stars {width: 180px !important;}
+
+  label.rate_star {font-size: 16px !important;}
 }
 
 body{
@@ -474,8 +479,8 @@ xpopup
   padding: 6px 1em 1em;
   color: #fff;
 }
-.rate h3{text-transform: uppercase;}
-
+.rate h3{text-transform: capitalize;color:#fff; }
+.rate .t_name{display: inline;color:#D6C195;}
 .rate .comments {
     background: rgba(255,255,255,.8) !important;
     border: none;

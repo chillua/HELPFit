@@ -60,7 +60,7 @@
           <li><a href="profile.php">Profile</a></li>
           <li><a href="createsession.php">Create Sessions</a></li>
           <li><a href="view_history_trainer.php" class="active-page">Manage Sessions</a></li>
-          <li><a href="#">View Reviews</a></li>
+          <li><a href="view_reviews.php">View Reviews</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <a href="trainer_main.php?logout='1'"><button class="btn navbar-btn nav-logout"><strong>Log Out</strong></button></a>
@@ -133,7 +133,25 @@
   <a class="up-arrow" href="#top" data-toggle="tooltip" title="TO TOP">
     <span class="glyphicon glyphicon-chevron-up"></span>
   </a><br><br>
-  <p>Copyright &copy; 2017 HELPFit</p>
+  <div class="footer-social-icons">
+    <h4 class="_12">Follow us on</h4>
+    <ul class="social-icons">
+        <li><a href="" class="social-icon"> <i class="fa fa-facebook"></i></a></li>
+        <li><a href="" class="social-icon"> <i class="fa fa-twitter"></i></a></li>
+        <li><a href="" class="social-icon"> <i class="fa fa-rss"></i></a></li>
+        <li><a href="" class="social-icon"> <i class="fa fa-youtube"></i></a></li>
+        <li><a href="" class="social-icon"> <i class="fa fa-linkedin"></i></a></li>
+        <li><a href="" class="social-icon"> <i class="fa fa-google-plus"></i></a></li>
+    </ul>
+  </div>
+  <div class="f_cont">
+    <h4 class="_12">Stay Connected</h4>
+    <p><span class="glyphicon glyphicon-map-marker"></span>&nbsp;&nbsp;KL, Malaysia</p>
+    <p><span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;Phone: +60 10000000</p>
+    <p><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;E-mail: mail@mail.com</p>
+  </div>
+  <p style="display:inline;">Privacy Policy</p> |<p style="display:inline;"> Copyright &copy; 2017 HELPFit</p>
+
 </footer>
 
 <script>

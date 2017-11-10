@@ -23,6 +23,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway|Cabin" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" href="profile.css">
   <link rel="stylesheet" href="nav.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon"/>
@@ -47,13 +48,13 @@
             <li><a href="member_main.php">Home</a></li>
             <li><a href="profile.php" class="active-page">Profile</a></li>
             <li><a href="view_sessions.php">Join Sessions</a></li>
-            <li><a href="#">View History</a></li>
+            <li><a href="view_history.php">View History</a></li>
           <?php }else{ ?>
             <li><a href="trainer_main.php">Home</a></li>
             <li><a href="profile.php" class="active-page">Profile</a></li>
             <li><a href="createsession.php">Create Sessions</a></li>
             <li><a href="view_history_trainer.php">Manage Sessions</a></li>
-            <li><a href="#">View Reviews</a></li>
+            <li><a href="view_reviews.php">View Reviews</a></li>
           <?php } ?>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -149,7 +150,25 @@
   <a class="up-arrow" href="#top" data-toggle="tooltip" title="TO TOP">
     <span class="glyphicon glyphicon-chevron-up"></span>
   </a><br><br>
-  <p>Copyright &copy; 2017 HELPFit</p>
+  <div class="footer-social-icons">
+    <h4 class="_12">Follow us on</h4>
+    <ul class="social-icons">
+        <li><a href="" class="social-icon"> <i class="fa fa-facebook"></i></a></li>
+        <li><a href="" class="social-icon"> <i class="fa fa-twitter"></i></a></li>
+        <li><a href="" class="social-icon"> <i class="fa fa-rss"></i></a></li>
+        <li><a href="" class="social-icon"> <i class="fa fa-youtube"></i></a></li>
+        <li><a href="" class="social-icon"> <i class="fa fa-linkedin"></i></a></li>
+        <li><a href="" class="social-icon"> <i class="fa fa-google-plus"></i></a></li>
+    </ul>
+  </div>
+  <div class="f_cont">
+    <h4 class="_12">Stay Connected</h4>
+    <p><span class="glyphicon glyphicon-map-marker"></span>&nbsp;&nbsp;KL, Malaysia</p>
+    <p><span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;Phone: +60 10000000</p>
+    <p><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;E-mail: mail@mail.com</p>
+  </div>
+  <p style="display:inline;">Privacy Policy</p> |<p style="display:inline;"> Copyright &copy; 2017 HELPFit</p>
+
 </footer>
 <script>
 <?php  if ($_SESSION['user']['user_type'] == "member"){ ?>

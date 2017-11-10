@@ -1,0 +1,118 @@
+@media only screen and (max-width: 439px) {
+  .main-container .training-container{border-radius: 0 !important;}
+  .main-container .training-container .details{padding: 5px 0 5px 0 !important;}
+  .accordion-panel__heading{font-size: 100% !important;}
+  .details .det_label{font-size: 80% !important;}
+  .details .avg-disp span{font-size: 100% !important; letter-spacing: 2px !important;}
+}
+
+
+
+/* Remove focus ring as all screen readers tested on, add their own focus ring */
+:focus{
+  outline: 0;
+}
+
+/* ---------------------------------
+
+		A C C O R D I A N
+
+--------------------------------- */
+
+.accordion{
+	border-radius: 3px;
+	overflow: hidden;
+	border: 1px solid #fff;
+  font-family: 'Cabin',sans-serif !important;
+}
+
+.accordion-panel__heading{
+	position: relative;
+	padding: 20px;
+	display: block;
+	text-decoration: none;
+	color: #737171 !important;
+	background: #f5f5f5;
+	font-size: 18px;
+	font-weight: 600;
+	transition: all .2s;
+	cursor:pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.accordion-panel__heading .timestamp{float: right;font-size: 80%; font-weight: normal;}
+
+.accordion-panel__heading:not(:last-child){
+  border-bottom: 1px solid #fff;
+}
+.accordion-panel__heading:before{
+	transition: all .2s ease;
+	content: "";
+	border: 0px #6495ED solid;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 100%;
+}
+.accordion-panel__heading.active:before{
+	transition: all .2s;
+	border-left: 8px #6495ED solid;
+}
+.accordion-panel__heading:HOVER{
+	color: #333;
+	background: #f1f1f1;
+	transition: all .2s;
+}
+.accordion-panel__heading.active:HOVER,
+.accordion-panel__heading.active {
+  transition: all .2s;
+  color: #333 !important;
+  background: #fff;
+  border-bottom: 0;
+  padding: 20px 20px 20px 30px;
+}
+.accordion-panel__content{
+  transition: all .2s;
+  position: relative;
+  padding: 0 20px 0 20px;
+  background: #f1f1f1;
+  max-height: 0;
+  overflow: hidden;
+}
+.accordion-panel__content:before{
+  transition: all .2s ease;
+  content: "";
+  border: 0px #6495ED solid;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+}
+.accordion-panel__content.active:before{
+  transition: all .2s;
+  border-left: 8px #6495ED solid;
+}
+.accordion-panel__content.active {
+  transition: all .2s;
+  max-height: 500px;
+  background: #fff;
+  padding: 10px 20px 15px 30px;
+}
+
+.acc_header{
+  color:#7BB7B6;
+  display: inline;
+}
+.accordion-panel__content h4{letter-spacing: 2px;}
+.details .avg-disp{text-align: center;}
+.details .avg-disp span{font-size: 150%;letter-spacing: 5px;}
+.details .avg-disp #avg_num{display: inline;}
+.details .avg-disp .avg_num_wrap{display: inline;}
+.details .det_label{color:#7BB7B6;text-transform: uppercase;font-weight: bold;font-family: 'Cabin',sans-serif;}
+
+.details .num-disp{text-align: center;}
+.details .num{margin-top: 0;font-family: 'Cabin',sans-serif;}

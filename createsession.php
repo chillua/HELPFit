@@ -25,6 +25,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway|Cabin" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -52,7 +53,7 @@
           <li><a href="profile.php">Profile</a></li>
           <li><a href="createsession.php" class="active-page">Create Sessions</a></li>
           <li><a href="view_history_trainer.php">Manage Sessions</a></li>
-          <li><a href="#">View Reviews</a></li>
+          <li><a href="view_reviews.php">View Reviews</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <a href="trainer_main.php?logout='1'"><button class="btn navbar-btn nav-logout"><strong>Log Out</strong></button></a>
@@ -62,7 +63,7 @@
   </div>
 </nav>
 <div class="container main-container">
-  <div class="col-xs-12 col-sm-12 col-sm-offset-0 col-lg-7 col-lg-offset-5">
+  <div class="col-xs-12 col-sm-12 col-sm-offset-0 col-lg-8 col-lg-offset-2">
     <div class="profile-wrap">
       <div class="profile-container">
         <h1><strong>CREATE A SESSION</strong></h1>
@@ -110,7 +111,7 @@
                 <label for="date" class="label">DATE</label>
                 <input id="date" type="text" name="date" class="form-control" required>
               </div>
-                <div class="col-sm-12 col-lg-6">
+                <div class="col-sm-12 col-lg-6 time-col">
                 <label for="time" class="label">TIME</label>
                 <input id="time" type="time" name="time" class="form-control" required>
               </div>
@@ -165,7 +166,25 @@
   <a class="up-arrow" href="#top" data-toggle="tooltip" title="TO TOP">
     <span class="glyphicon glyphicon-chevron-up"></span>
   </a><br><br>
-  <p>Copyright &copy; 2017 HELPFit</p>
+  <div class="footer-social-icons">
+    <h4 class="_12">Follow us on</h4>
+    <ul class="social-icons">
+        <li><a href="" class="social-icon"> <i class="fa fa-facebook"></i></a></li>
+        <li><a href="" class="social-icon"> <i class="fa fa-twitter"></i></a></li>
+        <li><a href="" class="social-icon"> <i class="fa fa-rss"></i></a></li>
+        <li><a href="" class="social-icon"> <i class="fa fa-youtube"></i></a></li>
+        <li><a href="" class="social-icon"> <i class="fa fa-linkedin"></i></a></li>
+        <li><a href="" class="social-icon"> <i class="fa fa-google-plus"></i></a></li>
+    </ul>
+  </div>
+  <div class="f_cont">
+    <h4 class="_12">Stay Connected</h4>
+    <p><span class="glyphicon glyphicon-map-marker"></span>&nbsp;&nbsp;KL, Malaysia</p>
+    <p><span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;Phone: +60 10000000</p>
+    <p><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;E-mail: mail@mail.com</p>
+  </div>
+  <p style="display:inline;">Privacy Policy</p> |<p style="display:inline;"> Copyright &copy; 2017 HELPFit</p>
+
 </footer>
 
 <script>

@@ -4,8 +4,8 @@
   	header('location: home.php');
   }
 
-  if ($_SESSION['user']['user_type'] == 'trainer'){
-    header('location: trainer_main.php');
+  if ($_SESSION['user']['user_type'] == 'member'){
+    header('location: member_main.php');
   }
 
 	if (isset($_GET['logout'])) {
@@ -13,15 +13,6 @@
 		unset($_SESSION['user']);
 		header("location: home.php");
 	}
-
-  if (isset($_GET['upcoming'])) {
-    unset($_GET['upcoming']);
-		$_SESSION['type'] = 'upcoming';
-	}
-  if (isset($_GET['completed'])){
-    unset($_GET['completed']);
-    $_SESSION['type'] = 'completed';
-  }
 
 ?>
 <!DOCTYPE html>
@@ -35,11 +26,13 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway|Cabin" rel="stylesheet">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <script src="myApp.js"></script>
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="view_sessions.css">
   <link rel="stylesheet" href="nav.css">
+  <link rel="stylesheet" href="view_sessions.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon"/>
-  <style>body{background-image: url(images/viewhistory.jpg);}</style>
+  <style>body{background-image: url(images/viewreviews.jpg);}</style>
 </head>
 <body>
 
@@ -56,76 +49,52 @@
     <div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li><a href="member_main.php">Home</a></li>
+          <li><a href="trainer_main.php">Home</a></li>
           <li><a href="profile.php">Profile</a></li>
-          <li><a href="view_sessions.php">Join Sessions</a></li>
-          <li><a href="view_history.php" class="active-page">View History</a></li>
+          <li><a href="createsession.php">Create Sessions</a></li>
+          <li><a href="view_history_trainer.php">Manage Sessions</a></li>
+          <li><a href="view_reviews.php" class="active-page">View Reviews</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <a href="member_main.php?logout='1'"><button class="btn navbar-btn nav-logout"><strong>Log Out</strong></button></a>
+          <a href="trainer_main.php?logout='1'"><button class="btn navbar-btn nav-logout"><strong>Log Out</strong></button></a>
 				</ul>
       </div>
     </div>
   </div>
 </nav>
 <div class="container main-container">
-  <h1>Training History</h1>
+  <h1>Your Reviews</h1>
   <div class="col-xs-12 col-sm-12 col-sm-offset-0 col-lg-10 col-lg-offset-1">
     <hr />
-    <?php if (isset($_SESSION['success_review'])) : ?>
-      <div class="alert alert-success alert-dismissible">
-      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      <strong>
-          <?php
-            echo $_SESSION['success_review'];
-            unset($_SESSION['success_review']);
-          ?><a class="link" href="view_sessions.php">&nbsp;Join another training >></a>
-        </strong>
-      </div>
-    <?php endif ?>
-    <div class="row">
-      <div class="col-xs-12 col-xs-6">
-        <?php if (!isset($_SESSION['type'])){ ?>
-          <div class="choice ini" style="margin-bottom:50px;"><a href="view_history.php?upcoming='1'" id="personal" name="type" value="upcoming"><img src="icons/upcoming.png"><br/>
-        <?php }else if (isset($_SESSION['type']) && $_SESSION['type']=='upcoming'){ ?>
-          <a href="view_history.php?upcoming='1'" class="choice chosen" id="personal" name="type" value="upcoming">
-        <?php }else { ?>
-          <a href="view_history.php?upcoming='1'" class="choice" id="personal" name="type" value="upcoming">
-        <?php } ?>
-          Upcoming
-        </a>
-        <?php if (!isset($_SESSION['type'])){ ?>
+    <div class="training-container">
+      <div class="training-container details">
+        <div class="row">
+          <div class="col-xs-6 avg-disp">
+            <?php //calculate trainer's average rating
+            $trainer_id = $_SESSION['user']['user_id'];
+            $query = mysqli_query_or_die("SELECT avg(rating) AS avg_rating FROM review WHERE trainer_id = '$trainer_id'");
+            $data = mysqli_fetch_assoc($query);
+            $avg_rating = round($data['avg_rating'],2); ?>
+            <p class="det_label">Average Rating</p>
+            <span class="stars" data-rating="<?php echo $avg_rating; ?>" data-num-stars="5" ></span>
+            <p class="avg_num_wrap">(<p id="avg_num"></p>)</p>
           </div>
-        <?php } ?>
-    </div>
-      <div class="col-xs-12 col-xs-6">
-        <?php if (!isset($_SESSION['type'])){ ?>
-          <div class="choice ini" style="margin-bottom:50px;"><a href="view_history.php?completed='1'" id="group" name="type" value="completed"><img src="icons/completed.png"><br/>
-        <?php }else if (isset($_SESSION['type']) && $_SESSION['type']=='completed'){ ?>
-          <a href="view_history.php?completed='1'" class="choice chosen" id="group" name="type" value="completed">
-        <?php }else { ?>
-          <a href="view_history.php?completed='1'" class="choice" id="group" name="type" value="completed">
-        <?php } ?>
-          Completed
-        </a>
-    </div>
-    <?php if (!isset($_SESSION['type'])){ ?>
+          <div class="col-xs-6 num-disp">
+            <?php //calculate trainer's no. of reviews
+            $trainer_id = $_SESSION['user']['user_id'];
+            $query = mysqli_query_or_die("SELECT count(*) AS numReviews FROM review WHERE trainer_id = '$trainer_id'");
+            $data = mysqli_fetch_assoc($query);
+            $num_reviews = $data['numReviews']; ?>
+            <p class="det_label">Total Reviews</p>
+            <h3 class="num"><?php echo $num_reviews; ?></h3>
+          </div>
+        </div>
       </div>
-    <?php } ?>
+      <hr />
+      <section class="accordion" role="tablist" aria-multiselectable="false">
+      <?php echo printReviews(); ?>
+      </section>
     </div>
-    <form id="join_form" method="post">
-      <?php echo printHistory(); ?>
-    </form>
-      <div class="cd-popup" role="alert">
-          <div class="cd-popup-container">
-              <p>Are you sure you want to join this training session?</p>
-              <ul class="cd-buttons">
-                  <li><button class="confirm_submit" id="confirm_join">Yes</li>
-                  <li><button class="confirm_submit confirm_close">No</li>
-              </ul>
-              <a href="#0" class="cd-popup-close img-replace">Close</a>
-          </div> <!-- cd-popup-container -->
-      </div> <!-- cd-popup -->
   </div>
 </div>
 <footer class="text-center">
@@ -174,13 +143,8 @@ $.fn.stars = function() {
 
 $('.stars').stars();
 
-$('.rate').hide();
-
-$(document).ready(function() {
-    $("input[data-sid]").click(function() {
-        $(".rate" + $(this).attr("data-sid")).slideToggle();
-    });
-});
+var num = <?php echo $avg_rating; ?>;
+document.getElementById('avg_num').innerHTML = parseFloat(Math.round(num * 100) / 100).toFixed(2);
 
 </script>
 </body>
