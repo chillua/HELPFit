@@ -49,8 +49,8 @@
           <li><a href="trainer_main.php" class="active-page">Home</a></li>
           <li><a href="profile.php">Profile</a></li>
           <li><a href="createsession.php">Create Sessions</a></li>
-          <li><a href="#">Manage Sessions</a></li>
-          <li><a href="#">View History</a></li>
+          <li><a href="view_history_trainer.php">Manage Sessions</a></li>
+          <li><a href="#">View Reviews</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <a href="member_main.php?logout='1'"><button class="btn navbar-btn nav-logout"><strong>Log Out</strong></button></a>

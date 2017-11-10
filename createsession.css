@@ -103,6 +103,8 @@ body{
 
 .session-form p {color:#aaa; font-size: 80%; padding-top: 20px;}
 
+.session-form #stype{color:#fff; background-color: #D6C195; font-size: 100%;font-family: 'Cabin',sans-serif;border-radius: 20px;padding: 8px;text-align: center;}
+
 .session-form .button{
 	width:100%;
 	font-family: "Cabin",sans-serif;

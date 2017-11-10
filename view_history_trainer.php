@@ -4,8 +4,8 @@
   	header('location: home.php');
   }
 
-  if ($_SESSION['user']['user_type'] == 'trainer'){
-    header('location: trainer_main.php');
+  if ($_SESSION['user']['user_type'] == 'member'){
+    header('location: member_main.php');
   }
 
 	if (isset($_GET['logout'])) {
@@ -56,41 +56,42 @@
     <div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li><a href="member_main.php">Home</a></li>
+          <li><a href="trainer_main.php">Home</a></li>
           <li><a href="profile.php">Profile</a></li>
-          <li><a href="view_sessions.php">Join Sessions</a></li>
-          <li><a href="view_history.php" class="active-page">View History</a></li>
+          <li><a href="createsession.php">Create Sessions</a></li>
+          <li><a href="view_history_trainer.php" class="active-page">Manage Sessions</a></li>
+          <li><a href="#">View Reviews</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <a href="member_main.php?logout='1'"><button class="btn navbar-btn nav-logout"><strong>Log Out</strong></button></a>
+          <a href="trainer_main.php?logout='1'"><button class="btn navbar-btn nav-logout"><strong>Log Out</strong></button></a>
 				</ul>
       </div>
     </div>
   </div>
 </nav>
 <div class="container main-container">
-  <h1>Training History</h1>
+  <h1>Your Training Sessions</h1>
   <div class="col-xs-12 col-sm-12 col-sm-offset-0 col-lg-10 col-lg-offset-1">
     <hr />
-    <?php if (isset($_SESSION['success_review'])) : ?>
+    <?php if (isset($_SESSION['success_cancel'])) : ?>
       <div class="alert alert-success alert-dismissible">
       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
       <strong>
           <?php
-            echo $_SESSION['success_review'];
-            unset($_SESSION['success_review']);
-          ?><a class="link" href="view_sessions.php">&nbsp;Join another training >></a>
+            echo $_SESSION['success_cancel'];
+            unset($_SESSION['success_cancel']);
+          ?><a class="link" href="view_sessions.php">&nbsp;View your Reviews >></a>
         </strong>
       </div>
     <?php endif ?>
     <div class="row">
       <div class="col-xs-12 col-xs-6">
         <?php if (!isset($_SESSION['type'])){ ?>
-          <div class="choice ini" style="margin-bottom:50px;"><a href="view_history.php?upcoming='1'" id="personal" name="type" value="upcoming"><img src="icons/upcoming.png"><br/>
+          <div class="choice ini" style="margin-bottom:50px;"><a href="view_history_trainer.php?upcoming='1'" id="personal" name="type" value="upcoming"><img src="icons/upcoming.png"><br/>
         <?php }else if (isset($_SESSION['type']) && $_SESSION['type']=='upcoming'){ ?>
-          <a href="view_history.php?upcoming='1'" class="choice chosen" id="personal" name="type" value="upcoming">
+          <a href="view_history_trainer.php?upcoming='1'" class="choice chosen" id="personal" name="type" value="upcoming">
         <?php }else { ?>
-          <a href="view_history.php?upcoming='1'" class="choice" id="personal" name="type" value="upcoming">
+          <a href="view_history_trainer.php?upcoming='1'" class="choice" id="personal" name="type" value="upcoming">
         <?php } ?>
           Upcoming
         </a>
@@ -100,11 +101,11 @@
     </div>
       <div class="col-xs-12 col-xs-6">
         <?php if (!isset($_SESSION['type'])){ ?>
-          <div class="choice ini" style="margin-bottom:50px;"><a href="view_history.php?completed='1'" id="group" name="type" value="completed"><img src="icons/completed.png"><br/>
+          <div class="choice ini" style="margin-bottom:50px;"><a href="view_history_trainer.php?completed='1'" id="group" name="type" value="completed"><img src="icons/completed.png"><br/>
         <?php }else if (isset($_SESSION['type']) && $_SESSION['type']=='completed'){ ?>
-          <a href="view_history.php?completed='1'" class="choice chosen" id="group" name="type" value="completed">
+          <a href="view_history_trainer.php?completed='1'" class="choice chosen" id="group" name="type" value="completed">
         <?php }else { ?>
-          <a href="view_history.php?completed='1'" class="choice" id="group" name="type" value="completed">
+          <a href="view_history_trainer.php?completed='1'" class="choice" id="group" name="type" value="completed">
         <?php } ?>
           Completed
         </a>
@@ -114,11 +115,11 @@
     <?php } ?>
     </div>
     <form id="join_form" method="post">
-      <?php echo printHistory(); ?>
+      <?php echo printTrainerHistory(); ?>
     </form>
       <div class="cd-popup" role="alert">
           <div class="cd-popup-container">
-              <p>Are you sure you want to join this training session?</p>
+              <p>Are you sure you want to cancel training session <a style="color:#aaa;" id="t_name">sessionName</a>?</p>
               <ul class="cd-buttons">
                   <li><button class="confirm_submit" id="confirm_join">Yes</li>
                   <li><button class="confirm_submit confirm_close">No</li>
@@ -158,11 +159,42 @@ $('.stars').stars();
 
 $('.rate').hide();
 
-$(document).ready(function() {
-    $("input[data-sid]").click(function() {
-        $(".rate" + $(this).attr("data-sid")).slideToggle();
+$('input[name=edit]').on('change', function() {
+    $("#join_form").submit();
+});
+
+
+jQuery(document).ready(function($){
+    //open popup
+    $("input[data-sid]").on('change', function(event) {
+        event.preventDefault();
+        $('.cd-popup').addClass('is-visible');
+        $('#t_name').text($(this).attr("data-sid"));
+    });
+
+    //close popup
+    $('.cd-popup').on('click', function(event){
+        if( $(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup') || $(event.target).is('.confirm_close')) {
+            event.preventDefault();
+            $(this).removeClass('is-visible');
+            $("input:radio").prop('checked', false);
+        }
+    });
+
+
+    $('#confirm_join').on('click', function(event){
+         // when the submit button in the modal is clicked, submit the form
+        $("#join_form").submit();
+    });
+
+    //close popup when clicking the esc keyboard button
+    $(document).keyup(function(event){
+        if(event.which=='27'){
+            $('.cd-popup').removeClass('is-visible');
+        }
     });
 });
+
 
 </script>
 </body>

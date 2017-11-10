@@ -179,7 +179,7 @@ body{
 
 .panel-default .container-fluid .title-class p{text-align: right;color: #73706F;}
 .panel-default .container-fluid .title-class h2{font-weight: bold;font-size: 150%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.panel-default .container-fluid .title-class .notes{font-size: 110%;margin-top: 0;text-transform: uppercase;color:#7BB7B6;font-family: 'Raleway',sans-serif;font-weight: bold;height: 50px;padding-top: 2px;overflow-y:scroll;margin-top: -5px;}
+.panel-default .container-fluid .title-class .notes{font-size: 100%;text-transform:none;margin-top: 0;color:#7BB7B6;font-family: 'Raleway',sans-serif;font-weight: bold;height: 50px;padding-top: 2px;overflow-y:scroll;margin-top: -5px;}
 .panel-default .container-fluid .title-class h3{font-size: 110%;margin-top: 0;text-transform: uppercase;color:#7BB7B6;font-family: 'Raleway',sans-serif;font-weight: bold;}
 .panel-default .container-fluid .title-class .par_label{text-transform: uppercase;color: #7BB7B6;font-weight: bold;font-size: 90%;font-family: 'Cabin',sans-serif;margin-bottom: 0;padding-bottom: 0;margin-top: -8px;}
 .panel-default .container-fluid .title-class .par{font-family: 'Cabin',sans-serif;margin-top: -3px;padding-top: 0;font-weight: bold;letter-spacing: 2px;}
@@ -192,8 +192,8 @@ body{
     background: #7BB7B6;
 }
 
-.panel-default .container-fluid .trainer-rate{
-  text-align: center;
+.panel-default .container-fluid .trainer-rate {
+  text-align: center !important;
   margin: 0;
   height:148px;
   padding-top: 15px;
@@ -206,23 +206,23 @@ body{
 .panel-default .container-fluid .trainer-rate h4{color: #73706F;font-size: 80%;text-transform: capitalize;font-family: 'Raleway';white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .panel-default .container-fluid .trainer-rate .stars{color: #7BB7B6;font-size: 110%;background-color: rgba(255,255,255,.5);border: .5px solid #fff;padding: 0 4px 0 5px; border-radius: 10px;}
 
-.panel-default .container-fluid .join-div{
+.panel-default .container-fluid .join-div, .panel-default .container-fluid .edit-btn{
   margin:0;
   padding: 0;
   height:148px;
   overflow: hidden;
 }
 
-.panel-default .container-fluid .join-div a{
+.panel-default .container-fluid .join-div a,.panel-default .container-fluid .edit-btn a{
   margin:0;
 }
 
-.panel-default .container-fluid .join-div label{
+.panel-default .container-fluid .join-div label,.panel-default .container-fluid .edit-btn label{
   margin:0;
   padding: 0;
 }
 
-.panel-default .join-div input { visibility: hidden;}
+.panel-default input { visibility: hidden;}
 
 .panel-default .container-fluid .btn{
   width:100%;
@@ -234,7 +234,18 @@ body{
   border-radius: 0;
   letter-spacing: 2px;
 }
-
+.panel-default .container-fluid .edit-btn .btn{
+  width:100%;
+  background-color: #D6C195;
+  color:#fff;
+  margin:0;
+  height:148px;
+  overflow: hidden;
+  border-radius: 0;
+  letter-spacing: 2px;
+}
+.panel-default .container-fluid .edit-btn p{margin-top:55px !important;font-size: 100% !important;}
+.panel-default .container-fluid .del-btn p{margin-top:55px !important;font-size: 100% !important;}
 .panel-default .container-fluid .btn p{
   margin-top: 45px;
 }
@@ -303,7 +314,7 @@ body{
 .mobile-panel .col-join-mobile { font-family: 'Cabin', sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .mobile-panel .col-join-mobile .stars-div{text-align: center;}
 .mobile-panel .col-join-mobile input { visibility: hidden;}
-.mobile-panel .col-join-mobile .btn{width: 100%;background-color: #496796;letter-spacing: 2px;text-align: center;color:#fff;margin:0;border-radius: 0;}
+.mobile-panel .col-join-mobile .btn{width: 100%;background-color: #496796;letter-spacing: 2px;text-align: center;color:#fff;margin:0;border-radius: 0; height: 30px !important;}
 .mobile-panel .col-join-mobile .btn-disabled{color:#fff;border-radius: 0;letter-spacing: 2px;background-color: #aaa;text-align: center;}
 
 
@@ -365,6 +376,7 @@ xpopup
 .cd-popup-container p {
   padding: 3em 1em;
 }
+
 .cd-popup-container .cd-buttons:after {
   content: "";
   display: table;

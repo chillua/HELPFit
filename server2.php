@@ -26,8 +26,10 @@
         //checks if session has already expired(completed) or not
         $date = strtotime($row['date']);
         if ($date < strtotime(date("Y-m-d"))){
-          $query = "UPDATE trainingsession SET status = 'completed' WHERE sessionID = '$sessionID'";
-          mysqli_query_or_die($query);
+            if ($row['status'] != "completed"){
+            $query = "UPDATE trainingsession SET status = 'completed' WHERE sessionID = '$sessionID'";
+            mysqli_query_or_die($query);
+          }
         }
 
         //checks if member have already joined the training session
@@ -89,9 +91,9 @@
             if (isset($personal)){
               echo '<h3 class="notes">';
               if (empty($personal['notes'])){
-                echo 'Notes: N/A';
+                echo 'NOTES: N/A';
               }else{
-                echo 'Notes: '.$personal['notes'];
+                echo 'NOTES: '.$personal['notes'];
               }
               echo '</h3>';
             }
@@ -196,7 +198,7 @@
       }
     }
     $_SESSION['success_join'] = "You have successfully joined!";
-		header('location: view_sessions.php');
+		header('location: #');
     exit();
   }
 
@@ -221,6 +223,10 @@
         $date = strtotime($row['date']);
         if ($date < strtotime(date("Y-m-d"))){
            $status_type = "completed";
+           if ($row['status'] != "completed"){
+             $query = "UPDATE trainingsession SET status = 'completed' WHERE sessionID = '$sessionID'";
+             mysqli_query_or_die($query);
+           }
         }else {
           $status_type = "upcoming";
         }
@@ -271,9 +277,9 @@
           if (isset($personal)){
             echo '<h3 class="notes">';
             if (empty($personal['notes'])){
-              echo 'Notes: N/A';
+              echo 'NOTES: N/A';
             }else{
-              echo 'Notes: '.$personal['notes'];
+              echo 'NOTES: '.$personal['notes'];
             }
             echo '</h3>';
           }
@@ -349,18 +355,17 @@
               <div class="stars-div"><span class="stars" data-rating="'.$avg_rating.'" data-num-stars="5" title="3.75"></span></div>
               <div class="col-xs-12 join-mobile">
               <label class="radio">';
-              //search if user has already reviewed this session
-              //$reviewed = mysqli_query_or_die("SELECT * FROM review WHERE sessionID='$sessionID' AND member_id='$member_id'");
+
               if ($status_type == "completed" && mysqli_num_rows($reviewed) == 1){
                 echo '<input type="radio" value="'.$sessionID.' disabled">
                 <div class="btn-disabled"><p>
                   <strong>REVIEWED';
               }
               else if ($status_type == "completed"){
-                  echo '<input type="radio" name="rate" value="'.$sessionID.'" class="btn join_btn" data-sid="'.$sessionID.'">
+                  echo '<input type="radio" name="rate" value="'.$sessionID.'" data-sid="'.$sessionID.'">
                   <div class="btn"><p>
                     <strong>
-                    REVIEW<br />TRAINER';
+                    REVIEW';
                 }
               else{
                 echo '<input type="radio" value="'.$sessionID.' disabled">
@@ -428,4 +433,202 @@
       exit();
     }
   }
+
+
+  // ----------------------------for trainer---------------------------------------
+
+  // print trainer's training history
+    function printTrainerHistory(){
+      $trainer_id = $_SESSION['user']['user_id'];
+      $result = mysqli_query_or_die("SELECT * FROM trainingsession WHERE trainer_id='$trainer_id' ORDER BY trainingsession.date, trainingsession.time ASC");
+      $none_available = true;
+      if(isset($_SESSION['type'])){
+        echo '<div class="training-container">';
+        while ($row = mysqli_fetch_assoc($result)) {
+          $sessionID = $row['sessionID'];
+
+          //checks if session has expired(completed) or not
+          $date = strtotime($row['date']);
+          if ($date < strtotime(date("Y-m-d"))){
+             $status_type = "completed";
+             if ($row['status'] != "completed"){
+               $query = "UPDATE trainingsession SET status = 'completed' WHERE sessionID = '$sessionID'";
+               mysqli_query_or_die($query);
+             }
+          }else {
+            $status_type = "upcoming";
+          }
+
+          if(($status_type == $_SESSION['type'])&&($row['status'] != "cancelled"))
+          {
+            $none_available = false;
+            //get the personal or group session attributes
+            if ($row['training_type'] == "personal"){
+              $ses_p = mysqli_query_or_die("SELECT * FROM personaltraining WHERE sessionID='$sessionID'");
+              $personal = mysqli_fetch_assoc($ses_p);
+            }else if ($row['training_type'] == "group"){
+              $ses_g = mysqli_query_or_die("SELECT * FROM grouptraining WHERE sessionID='$sessionID'");
+              $group = mysqli_fetch_assoc($ses_g);
+            }
+
+            $dateDM = DateTime::createFromFormat('Y-m-d', $row['date'])->format('M d');
+            $dateY = DateTime::createFromFormat('Y-m-d', $row['date'])->format('Y');
+            $time = DateTime::createFromFormat('H:i:s', $row['time'])->format('h:i a');
+            //for desktop and tablet
+            echo '<div class="panel panel-default">
+              <div class="container-fluid">
+                <div class="col-xs-2 date-time">
+                  <h3>'.$dateDM.'</h3>
+                  <h4 class="year">'.$dateY.'</h4>
+                  <h4 class="time">'.$time.'</h4>
+                </div>
+                <div class="col-xs-5 title-class ';
+                if(isset($group)){
+                  echo 'title-group';
+                }
+                if (isset($personal)){
+                  echo 'title-personal';
+                }
+
+            echo '">
+                  <p> SESSION ID: #'.$row['sessionID'].'</p>
+                  <h2 title="'.$row['title'].'">'.$row['title'].'</h2>';
+            if(isset($group)){
+              //count how many members have participated in the group training
+              $cquery = mysqli_query_or_die("SELECT count(*) AS total FROM membersession WHERE sessionID = '$sessionID'");
+              $data = mysqli_fetch_assoc($cquery);
+              $no_pax = $data['total'];
+              echo '<h3>Type: '.$group['class_type'].'</h3>';
+              echo '<p class="par_label">Participants </p>
+                    <p class="par">'.$no_pax.'/'.$group['max_pax'].'</p>';
+            }
+            if (isset($personal)){
+              echo '<h3 class="notes">';
+              if (empty($personal['notes'])){
+                echo 'NOTES: N/A';
+              }else{
+                echo 'NOTES: '.$personal['notes'];
+              }
+              echo '</h3>';
+            }
+            echo '</div>
+                <div class="col-xs-3 trainer-rate edit-btn">
+                  <label class="radio">
+                    <input type="radio" name="edit" value="'.$sessionID.'" class="btn join_btn" />
+                    <div class="btn"><p>
+                      <strong>
+                      EDIT
+                      </strong></p>
+                    </div>
+                  </label>
+                </div>
+                <div class="col-xs-2 join-div">
+                  <label class="radio">
+                    <input type="radio" name="cancel" value="'.$sessionID.'" class="btn join_btn" data-sid="'.$row['title'].'"/>
+                    <div class="btn del-btn"><p>
+                      <strong>
+                      CANCEL
+                      </strong></p>
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>';
+
+            //for mobile
+            echo '<div class="panel mobile-panel">
+              <div class="container-fluid">
+                <div class="col-xs-6 col-mobile">
+                  <p class="sid"> #'.$row['sessionID'].'</p>
+                  <p class="title">'.$row['title'].'</p>
+                  <p class="notes-type">';
+              if(isset($group)){
+                echo '<b>Type:</b> '.$group['class_type'].'</p>';
+                echo '<p class="mob_par"><b>Participants:</b> '.$no_pax.'/'.$group['max_pax'].'</p>';
+                unset($group);
+              }
+              if (isset($personal)){
+                echo '<div class="notes-div">';
+                if (empty($personal['notes'])){
+                  echo '<b>Notes:</b> N/A';
+                }else{
+                  echo '<b>Notes:</b> '.$personal['notes'];
+                }
+                echo '</div></p>';
+                unset($personal);
+              }
+              echo '<p class="fee">RM'.$row['fee'].'</p>
+              <p class="date-time">'.$dateDM.','.$dateY.' '.$time.'</p>
+              </div>
+              <div class="col-xs-6 col-join-mobile">
+                <div class="col-xs-12 join-mobile">
+                <label class="radio" style="margin-top:40px;">
+                    <input type="radio" name="edit" value="'.$sessionID.'" data-sid="'.$sessionID.'">
+                    <div class="btn"><p>
+                      <strong>
+                      EDIT
+                      </strong>
+                    </div>
+                  </label>
+                </div>
+                <div class="col-xs-12 join-mobile">
+                <label class="radio">
+                    <input type="radio" name="cancel" value="'.$sessionID.'" data-sid="'.$row['title'].'">
+                    <div class="btn"><p>
+                      <strong>
+                      CANCEL
+                      </strong>
+                    </div>
+                  </label>
+                </div>
+              </div>
+              </div>
+            </div>';
+          }
+        }// end while loop
+        if ($none_available){
+          echo '<div style="text-align:center"><h3 style="margin:90px 30px 90px 30px;color:#fff;">
+          You do not have any '.$_SESSION['type'].' training sessions.
+          </h3></div>';
+        }
+          echo '</div>';
+          unset($_SESSION['type']);
+      }//end if type
+    }
+
+    //cancel session
+    if (isset($_POST['cancel'])){
+      $sessionID = $_POST['cancel'];
+      $ses = mysqli_query_or_die("SELECT * FROM trainingsession WHERE sessionID='$sessionID'");
+      $ses = mysqli_fetch_assoc($ses);
+      mysqli_query_or_die("UPDATE trainingsession SET status='cancelled' WHERE sessionID='$sessionID'");
+
+      $_SESSION['success_cancel'] = "Training session ".$ses['title']." is successfully cancelled.";
+  		header('location: #');
+      exit();
+    }
+
+    //navigate to edit page
+    if (isset($_POST['edit'])){
+      unset($_SESSION['personal']);
+      unset($_SESSION['group']);
+      $sessionID = $_POST['edit'];
+      $ses = mysqli_query_or_die("SELECT * FROM trainingsession WHERE sessionID='$sessionID'");
+      $ses = mysqli_fetch_assoc($ses);
+      $_SESSION['training'] = $ses;
+
+      if ($_SESSION['training']['training_type'] == "personal"){
+        $ses_p = mysqli_query_or_die("SELECT * FROM personaltraining WHERE sessionID='$sessionID'");
+        $ses_p = mysqli_fetch_assoc($ses_p);
+        $_SESSION['personal'] = $ses_p;
+      }else{
+        $ses_trn = mysqli_query_or_die("SELECT * FROM grouptraining WHERE sessionID='$sessionID'");
+        $ses_trn = mysqli_fetch_assoc($ses_trn);
+        $_SESSION['group'] = $ses_trn;
+      }
+      header('location: editsession.php');
+      exit();
+    }
+
+
 ?>

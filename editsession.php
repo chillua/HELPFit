@@ -14,6 +14,10 @@
 		header("location: home.php");
 	}
 
+  if (!isset($_SESSION['training'])){
+    header('location: view_history_trainer.php');
+  }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -50,7 +54,7 @@
         <ul class="nav navbar-nav">
           <li><a href="trainer_main.php">Home</a></li>
           <li><a href="profile.php">Profile</a></li>
-          <li><a href="createsession.php" class="active-page">Create Sessions</a></li>
+          <li><a href="createsession.php" >Create Sessions</a></li>
           <li><a href="view_history_trainer.php">Manage Sessions</a></li>
           <li><a href="#">View Reviews</a></li>
         </ul>
@@ -65,16 +69,16 @@
   <div class="col-xs-12 col-sm-12 col-sm-offset-0 col-lg-7 col-lg-offset-5">
     <div class="profile-wrap">
       <div class="profile-container">
-        <h1><strong>CREATE A SESSION</strong></h1>
+        <h1><strong>EDIT SESSION</strong></h1>
         <hr>
         <?php echo display_error(); ?>
-        <?php if (isset($_SESSION['success_createsession'])) : ?>
+        <?php if (isset($_SESSION['success_editsession'])) : ?>
           <div class="alert alert-success alert-dismissible">
           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
           <strong>
               <?php
-                echo $_SESSION['success_createsession'];
-                unset($_SESSION['success_createsession']);
+                echo $_SESSION['success_editsession'];
+                unset($_SESSION['success_editsession']);
               ?>
             </strong>
             </h1>
@@ -84,74 +88,87 @@
           <form id="session" action="#" method="post" autocomplete="off" >
             <div class="form-group">
               <label for="training_type" class="label">TRAINING TYPE</label>
-              <div class="row">
-                <div class="col-sm-12 col-lg-6">
-                  <label class="radio">
-                    <input type="radio" id="radio-personal" name="training_type" value="personal" onclick="showErrorMsg(); showErrorMsgSdm();" required>
-                    <div class="choice">Personal Training</div>
-                  </label>
-                </div>
-                <div class="col-sm-12 col-lg-6">
-                  <label class="radio">
-                    <input type="radio" id="radio-group" name="training_type" value="group"  onclick="showErrorMsg(); " required>
-                    <div class="choice">Group Training</div>
-                  </label>
-                </div>
-              </div>
+              <?php if (isset($_SESSION['personal'])) {
+                echo '<p id="stype"> Personal Training </p>';
+              }else if (isset($_SESSION['group'])){
+                echo '<p id="stype"> Group Training </p>';
+              } ?>
             </div>
-            <div id="error-msg-pg">Please select personal or group training.</div>
             <div class="form-group">
               <label for="title" class="label">TITLE</label>
-              <input id="title" type="text" name="title" class="form-control" placeholder="Title" required>
+              <input id="title" type="text" name="title" class="form-control" placeholder="Title" required value="<?php echo $_SESSION['training']['title']; ?>">
             </div>
             <div class="form-group">
               <div class="row">
                 <div class="col-sm-12 col-lg-6">
                 <label for="date" class="label">DATE</label>
-                <input id="date" type="text" name="date" class="form-control" required>
+                <input id="date" type="text" name="date" class="form-control" required value="<?php echo DateTime::createFromFormat('Y-m-d', $_SESSION['training']['date'])->format('d/m/Y'); ?>">
               </div>
                 <div class="col-sm-12 col-lg-6">
                 <label for="time" class="label">TIME</label>
-                <input id="time" type="time" name="time" class="form-control" required>
+                <input id="time" type="time" name="time" class="form-control" required value="<?php echo $_SESSION['training']['time']; ?>">
               </div>
               </div>
             </div>
             <div class="form-group">
               <label for="fee" class="label">FEE</label>
-              <input id="fee" type="number" name="fee" class="form-control" placeholder="0.00" required>
+              <input id="fee" type="number" name="fee" class="form-control" placeholder="0.00" required value="<?php echo $_SESSION['training']['fee']; ?>">
             </div>
-            <div id="group-training">
-            <div class="form-group">
-                <label for="max_pax" class="label">MAX PARTICIPANTS</label>
-              <input id="max_pax" type="number" name="max_pax" class="form-control" placeholder="e.g. 30" />
-            </div>
-            <div class="form-group">
-              <label for="class_type" class="label label-center">CLASS TYPE</label>
-              <div class="row">
-                <div class="col-sm-12 col-lg-4">
-                  <label class="radio">
-                    <input type="radio" id="radio-sport" name="class_type" value="sport" onclick="showErrorMsgSdm();" />
-                    <div class="choice">Sport</div>
-                  </label>
-                </div>
-                <div class="col-sm-12 col-lg-4">
-                  <label class="radio">
-                    <input type="radio" id="radio-dance" name="class_type" value="dance" onclick="showErrorMsgSdm();" />
-                    <div class="choice">Dance</div>
-                  </label>
-                </div>
-                <div class="col-sm-12 col-lg-4">
-                  <label class="radio">
-                    <input type="radio" id="radio-mma" name="class_type" value="mma" onclick="showErrorMsgSdm();" />
-                    <div class="choice">MMA</div>
-                  </label>
+            <?php if (isset($_SESSION['group'])){ ?>
+              <div id="group-training" style="display:block;">
+              <div class="form-group">
+                  <label for="max_pax" class="label">MAX PARTICIPANTS</label>
+                <input id="max_pax" type="number" name="max_pax" class="form-control" placeholder="e.g. 30" value="<?php echo $_SESSION['group']['max_pax']; ?>" />
+              </div>
+              <div class="form-group">
+                <label for="class_type" class="label label-center">CLASS TYPE</label>
+                <div class="row">
+                  <div class="col-sm-12 col-lg-4">
+                    <label class="radio">
+                      <input type="radio" id="radio-sport" name="class_type" value="sport" <?php if ($_SESSION['group']['class_type'] == "sport") print "checked"; ?> />
+                      <div class="choice">Sport</div>
+                    </label>
+                  </div>
+                  <div class="col-sm-12 col-lg-4">
+                    <label class="radio">
+                      <input type="radio" id="radio-dance" name="class_type" value="dance" <?php if ($_SESSION['group']['class_type'] == "dance") print "checked"; ?> />
+                      <div class="choice">Dance</div>
+                    </label>
+                  </div>
+                  <div class="col-sm-12 col-lg-4">
+                    <label class="radio">
+                      <input type="radio" id="radio-mma" name="class_type" value="mma" <?php if ($_SESSION['group']['class_type'] == "mma") print "checked"; ?> />
+                      <div class="choice">MMA</div>
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
+        <?php }else{ ?>
+          <div class="form-group">
+              <label for="notes" class="label">NOTES</label>
+            <textarea id="notes" style="height:200px;" name="notes" class="form-control" placeholder="Enter training details here..." ><?php echo $_SESSION['personal']['notes']; ?></textarea>
           </div>
-          <div id="error-msg-sdm">Please select sport, dance or MMA type of training.</div>
+        <?php } ?>
+        <div class="form-group">
+          <label for="class_type" class="label label-center">STATUS</label>
+          <div class="row">
+            <div class="col-sm-12 col-lg-6">
+              <label class="radio">
+                <input type="radio" id="radio-ava" name="status" value="available" <?php if ($_SESSION['training']['status'] == "available") print "checked"; ?> />
+                <div class="choice">Available</div>
+              </label>
+            </div>
+            <div class="col-sm-12 col-lg-6">
+              <label class="radio">
+                <input type="radio" id="radio-comp" name="status" value="completed" <?php if ($_SESSION['training']['status'] == "completed") print "checked"; ?> />
+                <div class="choice">Completed</div>
+              </label>
+            </div>
+          </div>
+        </div>
             <div class="form-group">
-              <button type="submit" name="createsession" class="button" style="margin-top:10px;" onclick="showErrorMsg(); showErrorMsgSdm();">CREATE</button>
+              <button type="submit" name="editsession" class="button" style="margin-top:10px;" onclick="showErrorMsgSdm();">EDIT</button>
             </div>
           </form>
         </div>
@@ -170,35 +187,10 @@
 
 <script>
 
-// to check if the radio buttons are selected
-function showErrorMsg(){
-  if(!document.getElementById("radio-group").checked && !document.getElementById("radio-personal").checked) {
-    document.getElementById('error-msg-pg').style.display = 'block';
-  }else{
-    document.getElementById('error-msg-pg').style.display = 'none';
-  }
-}
-function showErrorMsgSdm(){
-  if (document.getElementById("radio-group").checked){
-    if(!document.getElementById("radio-mma").checked && !document.getElementById("radio-sport").checked
-        && !document.getElementById("radio-dance").checked) {
-      document.getElementById('error-msg-sdm').style.display = 'block';
-    }else{
-      document.getElementById('error-msg-sdm').style.display = 'none';
-    }
-  }
-  else{
-    document.getElementById('error-msg-sdm').style.display = 'none';
-  }
-}
-
-
 $('#radio-group').change(function () {
     if($(this).is(':checked')) {
         $('#radio-sport').prop('required',true);
         $('#max_pax').prop('required',true);
-        $('#group-training').css("display","block");
-        $('#error-msg-pg').css("display","none");
     }
 });
 
@@ -206,8 +198,6 @@ $('#radio-personal').change(function () {
     if($(this).is(':checked')) {
       $('#radio-sport').prop('required',false);
       $('#max_pax').prop('required',false);
-      $('#group-training').css("display","none");
-      $('#error-msg-pg').css("display","none");
     }
 });
 

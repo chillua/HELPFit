@@ -257,11 +257,11 @@ if (isset($_POST['change_password'])) {
 if (isset($_POST['createsession'])) {
   $training_type = mysqli_real_escape_string($db, $_POST['training_type']);
   $title = trim(mysqli_real_escape_string($db, $_POST['title']));
-  $date = DateTime::createFromFormat('d/m/Y', $_POST['date'])->format('Y-m-d');
+  $date = $_POST['date'];
   $time = $_POST['time'];
-  $fee = $_POST['fee'];
-  $max_pax = $_POST['max_pax'];
-  $class_type = mysqli_real_escape_string($db, $_POST['class_type']);
+  $fee = mysqli_real_escape_string($db, $_POST['fee']);
+  $max_pax = mysqli_real_escape_string($db, $_POST['max_pax']);
+  $class_type = $_POST['class_type'];
 
   if (empty($training_type)) { array_push($errors, "Please choose either personal training or group training."); }
   if (empty($title)) { array_push($errors, "Title is required."); }
@@ -277,6 +277,9 @@ if (isset($_POST['createsession'])) {
   $user_id = $_SESSION['user']['user_id'];
   $status = "available"; //status set as available
   if (count($errors) == 0) {
+    //format the date
+    $date = DateTime::createFromFormat('d/m/Y', $_POST['date'])->format('Y-m-d');
+
     $query = "INSERT INTO trainingsession (title, date, time, fee, status, trainer_id, training_type)
 				  VALUES('$title','$date', '$time','$fee','$status','$user_id','$training_type')";
 		mysqli_query($db, $query);
@@ -299,6 +302,90 @@ if (isset($_POST['createsession'])) {
     exit();
 	}
 
+}
+
+
+//update session
+if (isset($_POST['editsession'])){
+  $title = trim(mysqli_real_escape_string($db, $_POST['title']));
+  $date = $_POST['date'];
+  $time = $_POST['time'];
+  $fee = mysqli_real_escape_string($db, $_POST['fee']);
+  $max_pax = mysqli_real_escape_string($db, $_POST['max_pax']);
+  $notes = mysqli_real_escape_string($db,$_POST['notes']);
+  $class_type = $_POST['class_type'];
+  $training_type = $_SESSION['training']['training_type'];
+  $status = $_POST['status'];
+  $sessionID = $_SESSION['training']['sessionID'];
+
+  if (empty($title)) { array_push($errors, "Title is required."); }
+  if (empty($date)) { array_push($errors, "Date is required."); }
+  if (empty($time)) { array_push($errors, "Time is required."); }
+  if (empty($fee)) { array_push($errors, "Fee is required."); }
+  if (empty($status)) { array_push($errors, "Status is required."); }
+
+  if($training_type == "group"){
+    if (empty($max_pax)) { array_push($errors, "Maximum participants is required."); }
+    if (empty($class_type)) { array_push($errors, "Please choose a training class type."); }
+  }
+
+  if (count($errors) == 0) {
+    //format the date
+    $date = DateTime::createFromFormat('d/m/Y', $_POST['date'])->format('Y-m-d');
+
+    $query = "UPDATE trainingsession SET title='$title',date='$date', time='$time',
+              fee='$fee', status='$status' WHERE sessionID='$sessionID'";
+    mysqli_query_or_die($query);
+    if($training_type == "personal")
+    {
+      $nquery = "UPDATE personaltraining SET notes='$notes'
+            WHERE sessionID='$sessionID'";
+      mysqli_query_or_die($nquery);
+    }
+    else if ($training_type == "group")
+    {
+      $nquery = "UPDATE grouptraining SET max_pax='$max_pax', class_type='$class_type'
+            WHERE sessionID='$sessionID'";
+      mysqli_query_or_die($nquery);
+    }
+
+    // reset sessions
+    unset($_SESSION['training']);
+    $curr = mysqli_query_or_die("SELECT * FROM trainingsession WHERE sessionID='$sessionID'");
+    if (mysqli_num_rows($curr) == 1) {
+      $_SESSION['training'] = mysqli_fetch_assoc($curr);
+    }
+
+    if ($training_type == "personal"){
+      unset($_SESSION['personal']);
+
+      $curr_t = mysqli_query_or_die("SELECT * FROM personaltraining WHERE sessionID='$sessionID'");
+      if (mysqli_num_rows($curr_t) == 1) {
+        $_SESSION['personal'] = mysqli_fetch_assoc($curr_t);
+      }
+    }else{
+      unset($_SESSION['group']);
+
+      $curr_t = mysqli_query_or_die("SELECT * FROM grouptraining WHERE sessionID='$sessionID'");
+      if (mysqli_num_rows($curr_t) == 1) {
+        $_SESSION['group'] = mysqli_fetch_assoc($curr_t);
+      }
+    }
+    $_SESSION['success_editsession'] = "Details successfully updated!";
+    header('location: editsession.php');
+    exit();
+  }
+}
+
+function mysqli_query_or_die($query) {
+  global $db;
+    $result = mysqli_query($db, $query);
+    if ($result)
+        return $result;
+    else {
+        $err = mysqli_error($db);
+        die("<br>{$query}<br>*** {$err} ***<br>");
+    }
 }
 
  ?>
