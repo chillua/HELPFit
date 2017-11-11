@@ -211,6 +211,10 @@ body{
 .panel-default .container-fluid .trainer-rate h4{color: #73706F;font-size: 80%;text-transform: capitalize;font-family: 'Raleway';white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .panel-default .container-fluid .trainer-rate .stars{color: #7BB7B6;font-size: 110%;background-color: rgba(255,255,255,.5);border: .5px solid #fff;padding: 0 4px 0 5px; border-radius: 10px;}
 
+.panel-default .container-fluid .status .sts_label{text-transform: uppercase;color: #7BB7B6;font-weight: bold;font-size: 80%;font-family: 'Cabin',sans-serif;margin-bottom: 0;padding-bottom: 0;margin-top: 50px;}
+.panel-default .container-fluid .status{padding: 5px;text-align: center !important;}
+.panel-default .container-fluid .status p{line-height: 15px;text-transform: capitalize;font-size: 90%;font-family: 'Cabin';word-wrap: break-word;color:#aaa;}
+
 .panel-default .container-fluid .join-div, .panel-default .container-fluid .edit-btn{
   margin:0;
   padding: 0;
@@ -305,9 +309,9 @@ body{
   padding: 8px;
 }
 
-.mobile-panel .col-mobile .sid{color: #aaa;}
+.mobile-panel .col-mobile .sid{color: #aaa;text-transform: capitalize;}
 .mobile-panel .col-mobile .title{font-size: 100%;font-weight: bold;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.mobile-panel .col-mobile .notes-div{height: 50px;padding-top: 2px;overflow-y:scroll;font-size: 75%;margin-top: -5px;font-family: 'Cabin',sans-serif;margin-bottom: -10px;}
+.mobile-panel .col-mobile .notes-div{height: 50px;padding-top: 2px;overflow-y:scroll;font-size: 85%;margin-top: -5px;font-family: 'Cabin',sans-serif;margin-bottom: -10px;}
 .mobile-panel .col-mobile .notes-type{margin-top: -5px;margin-bottom: 0;text-transform: uppercase;font-family: 'Cabin',sans-serif;}
 .mobile-panel .col-mobile .fee{font-size: 120%;float: right;margin-top: 40px;color:#C6685D;font-weight: bold;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .mobile-panel .col-mobile .mob_par{margin-top: 0;text-transform: uppercase;font-family: 'Cabin',sans-serif;}
@@ -316,7 +320,7 @@ body{
 .mobile-panel .col-join-mobile{padding: 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 
 .mobile-panel .col-join-mobile .label{padding: 0;text-transform: uppercase;color: #7BB7B6;font-size: 75%;}
-.mobile-panel .col-join-mobile { font-family: 'Cabin', sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mobile-panel .col-join-mobile { text-transform: capitalize;font-family: 'Cabin', sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .mobile-panel .col-join-mobile .stars-div{text-align: center;}
 .mobile-panel .col-join-mobile input { visibility: hidden;}
 .mobile-panel .col-join-mobile .btn{width: 100%;background-color: #496796;letter-spacing: 2px;text-align: center;color:#fff;margin:0;border-radius: 0; height: 30px !important;}
@@ -556,3 +560,7 @@ label.rate_star:before {
 	text-align: center;
   margin-top: -20px;
 }
+
+.cancelled{float: right;}
+
+.cancelled:hover{text-decoration: underline;}

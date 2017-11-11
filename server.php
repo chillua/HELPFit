@@ -11,6 +11,7 @@
   $specialty="";
   $errors = array();
   $errors_login = array();
+  $s_change = array();
 
 
   //connect to the database
@@ -108,7 +109,7 @@ if (isset($_POST['login'])) {
 			if ($logged_in_user['user_type'] == 'member') {
 
 				$_SESSION['user'] = $logged_in_user;
-				$_SESSION['success']  = "Welcome to HELPFit! Let's get started!";
+				$_SESSION['success']  = "Welcome to HELPFit! Let's get started! <a class='link' href='view_sessions.php'>Join a Training Session >></a>";
 
         //get the level of member from the member table
         $user_id = $_SESSION['user']['user_id'];
@@ -120,7 +121,7 @@ if (isset($_POST['login'])) {
 				header('location: member_main.php');
 			}else{
 				$_SESSION['user'] = $logged_in_user;
-				$_SESSION['success']  = "Welcome to HELPFit! Let's get started!";
+				$_SESSION['success_t']  = "Welcome to HELPFit! Let's get started! <a class='link' href='createsession.php'>Create a Training Session >></a>";
 
         //get the specialty of trainer from the trainer table
         $user_id = $_SESSION['user']['user_id'];
@@ -304,7 +305,6 @@ if (isset($_POST['createsession'])) {
 
 }
 
-
 //update session
 if (isset($_POST['editsession'])){
   $title = trim(mysqli_real_escape_string($db, $_POST['title']));
@@ -329,11 +329,37 @@ if (isset($_POST['editsession'])){
     if (empty($class_type)) { array_push($errors, "Please choose a training class type."); }
   }
 
+  //check if status entered correctly, if not, correct for them
+  $result = mysqli_query_or_die("SELECT count(*) AS total FROM membersession WHERE sessionID = '$sessionID'");
+  $data = mysqli_fetch_assoc($result);
+  $no_pax = $data['total'];
+  if ((($training_type == "personal")&&($no_pax >= 1))||(($training_type=="group")&&($no_pax >= $max_pax))){
+    if ($status != "full"){
+      $status = "full";
+      $_SESSION['status_change'] = "Status is changed to full because there are no slots left.";
+    }
+  }else{
+    //if the date is not on the same day
+    $f_date = DateTime::createFromFormat('d/m/Y', $date)->format('Y-m-d');
+    if($f_date != date("Y-m-d")){
+      if ($status != "available"){
+        $status = "available";
+        $_SESSION['status_change'] = "Status is changed to available because there are still available slots.";
+      }
+    }
+  }
+
   if (count($errors) == 0) {
     //format the date
-    $date = DateTime::createFromFormat('d/m/Y', $_POST['date'])->format('Y-m-d');
+    $f_date = DateTime::createFromFormat('d/m/Y', $date)->format('Y-m-d');
+    if($f_date < date("Y-m-d")){
+       if ($status != "completed"){
+         $status = "completed";
+         $_SESSION['status_change'] = "Status is changed to completed because the date is in the past.";
+       }
+     }
 
-    $query = "UPDATE trainingsession SET title='$title',date='$date', time='$time',
+    $query = "UPDATE trainingsession SET title='$title',date='$f_date', time='$time',
               fee='$fee', status='$status' WHERE sessionID='$sessionID'";
     mysqli_query_or_die($query);
     if($training_type == "personal")
@@ -347,7 +373,9 @@ if (isset($_POST['editsession'])){
       $nquery = "UPDATE grouptraining SET max_pax='$max_pax', class_type='$class_type'
             WHERE sessionID='$sessionID'";
       mysqli_query_or_die($nquery);
-    }
+
+
+     }
 
     // reset sessions
     unset($_SESSION['training']);

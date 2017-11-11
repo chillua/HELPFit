@@ -59,7 +59,7 @@
           <li><a href="trainer_main.php">Home</a></li>
           <li><a href="profile.php">Profile</a></li>
           <li><a href="createsession.php">Create Sessions</a></li>
-          <li><a href="view_history_trainer.php" class="active-page">Manage Sessions</a></li>
+          <li><a href="view_history_trainer.php">Manage Sessions</a></li>
           <li><a href="view_reviews.php">View Reviews</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -69,58 +69,28 @@
     </div>
   </div>
 </nav>
-<div class="container main-container" style="margin-bottom:50px;">
-  <h1>Your Training Sessions</h1>
+<div class="container main-container">
+  <h1>Cancelled Training Sessions</h1>
   <div class="col-xs-12 col-sm-12 col-sm-offset-0 col-lg-10 col-lg-offset-1">
     <hr />
-    <?php if (isset($_SESSION['success_cancel'])) : ?>
+    <?php if (isset($_SESSION['success_uncancel'])) : ?>
       <div class="alert alert-success alert-dismissible">
       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
       <strong>
           <?php
-            echo $_SESSION['success_cancel'];
-            unset($_SESSION['success_cancel']);
-          ?><a class="link" href="view_reviews.php">&nbsp;View your Reviews >></a>
+            echo $_SESSION['success_uncancel'];
+            unset($_SESSION['success_uncancel']);
+          ?><a class="link" href="view_history_trainer.php">&nbsp;View Sessions >></a>
         </strong>
       </div>
     <?php endif ?>
-    <div class="row">
-      <div class="col-xs-12 col-xs-6">
-        <?php if (!isset($_SESSION['type'])){ ?>
-          <div class="choice ini" style="margin-bottom:30px;"><a href="view_history_trainer.php?upcoming='1'" id="personal" name="type" value="upcoming"><img src="icons/upcoming.png"><br/>
-        <?php }else if (isset($_SESSION['type']) && $_SESSION['type']=='upcoming'){ ?>
-          <a href="view_history_trainer.php?upcoming='1'" class="choice chosen" id="personal" name="type" value="upcoming">
-        <?php }else { ?>
-          <a href="view_history_trainer.php?upcoming='1'" class="choice" id="personal" name="type" value="upcoming">
-        <?php } ?>
-          Upcoming
-        </a>
-        <?php if (!isset($_SESSION['type'])){ ?>
-          </div>
-        <?php } ?>
-    </div>
-      <div class="col-xs-12 col-xs-6">
-        <?php if (!isset($_SESSION['type'])){ ?>
-          <div class="choice ini" style="margin-bottom:30px;"><a href="view_history_trainer.php?completed='1'" id="group" name="type" value="completed"><img src="icons/completed.png"><br/>
-        <?php }else if (isset($_SESSION['type']) && $_SESSION['type']=='completed'){ ?>
-          <a href="view_history_trainer.php?completed='1'" class="choice chosen" id="group" name="type" value="completed">
-        <?php }else { ?>
-          <a href="view_history_trainer.php?completed='1'" class="choice" id="group" name="type" value="completed">
-        <?php } ?>
-          Completed
-        </a>
-    </div>
-    <?php if (!isset($_SESSION['type'])){ ?>
-      </div>
-    <?php } ?>
-    </div>
+
     <form id="join_form" method="post">
-      <?php echo printTrainerHistory(); ?>
+      <?php echo printCancelledSessions(); ?>
     </form>
-    <a class="cancelled" href="cancelled_sessions.php">View Cancelled Training Sessions >></a>
       <div class="cd-popup" role="alert">
           <div class="cd-popup-container">
-              <p>Are you sure you want to cancel training session <a style="color:#aaa;" id="t_name">sessionName</a>?</p>
+              <p>Are you sure you want to undo cancellation of training session <a style="color:#aaa;" id="t_name">sessionName</a>?</p>
               <ul class="cd-buttons">
                   <li><button class="confirm_submit" id="confirm_join">Yes</li>
                   <li><button class="confirm_submit confirm_close">No</li>
@@ -130,6 +100,7 @@
       </div> <!-- cd-popup -->
   </div>
 </div>
+
 <footer class="text-center">
   <a class="up-arrow" href="#top" data-toggle="tooltip" title="TO TOP">
     <span class="glyphicon glyphicon-chevron-up"></span>
@@ -156,27 +127,6 @@
 </footer>
 
 <script>
-$.fn.stars = function() {
-    return $(this).each(function() {
-
-        var rating = $(this).data("rating");
-
-        var numStars = $(this).data("numStars");
-
-        var fullStar = new Array(Math.floor(rating + 1)).join('<i class="fa fa-star"></i>');
-
-        var halfStar = ((rating%1) !== 0) ? '<i class="fa fa-star-half-empty"></i>': '';
-
-        var noStar = new Array(Math.floor(numStars + 1 - rating)).join('<i class="fa fa-star-o"></i>');
-
-        $(this).html(fullStar + halfStar + noStar);
-
-    });
-}
-
-$('.stars').stars();
-
-$('.rate').hide();
 
 $('input[name=edit]').on('change', function() {
     $("#join_form").submit();

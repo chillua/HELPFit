@@ -1,7 +1,6 @@
 <?php
   include('server.php');
   if (!isset($_SESSION['user'])) {
-    $_SESSION['msg'] = "You must log in first";
   	header('location: home.php');
   }
 
@@ -64,16 +63,15 @@
 <div class="container main-container">
 
   <!-- notification message -->
-  <?php if (isset($_SESSION['success'])) : ?>
+  <?php if (isset($_SESSION['success_t'])) : ?>
     <div class="alert alert-success alert-dismissible">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <strong>
         <?php
-          echo $_SESSION['success'];
-          unset($_SESSION['success']);
+          echo $_SESSION['success_t'];
+          unset($_SESSION['success_t']);
         ?>
       </strong>
-      </h1>
     </div>
   <?php endif ?>
 

@@ -22,7 +22,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>HELPFit | Create Training Session</title>
+  <title>HELPFit | Edit Training Session</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -67,7 +67,7 @@
   </div>
 </nav>
 <div class="container main-container">
-  <div class="col-xs-12 col-sm-12 col-sm-offset-0 col-lg-7 col-lg-offset-5">
+  <div class="col-xs-12 col-sm-12 col-sm-offset-0 col-lg-8 col-lg-offset-2">
     <div class="profile-wrap">
       <div class="profile-container">
         <h1><strong>EDIT SESSION</strong></h1>
@@ -80,6 +80,10 @@
               <?php
                 echo $_SESSION['success_editsession'];
                 unset($_SESSION['success_editsession']);
+                if (isset($_SESSION['status_change'])){
+                  echo '<br />'.$_SESSION['status_change'];
+                  unset($_SESSION['status_change']);
+                }
               ?>
             </strong>
             </h1>
@@ -154,16 +158,22 @@
         <div class="form-group">
           <label for="class_type" class="label label-center">STATUS</label>
           <div class="row">
-            <div class="col-sm-12 col-lg-6">
+            <div class="col-sm-12 col-lg-4">
               <label class="radio">
                 <input type="radio" id="radio-ava" name="status" value="available" <?php if ($_SESSION['training']['status'] == "available") print "checked"; ?> />
                 <div class="choice">Available</div>
               </label>
             </div>
-            <div class="col-sm-12 col-lg-6">
+            <div class="col-sm-12 col-lg-4">
               <label class="radio">
                 <input type="radio" id="radio-comp" name="status" value="completed" <?php if ($_SESSION['training']['status'] == "completed") print "checked"; ?> />
                 <div class="choice">Completed</div>
+              </label>
+            </div>
+            <div class="col-sm-12 col-lg-4">
+              <label class="radio">
+                <input type="radio" id="radio-full" name="status" value="full" <?php if ($_SESSION['training']['status'] == "full") print "checked"; ?> />
+                <div class="choice">Full</div>
               </label>
             </div>
           </div>
