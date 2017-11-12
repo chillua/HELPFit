@@ -72,6 +72,9 @@ body{
 	outline: none;
 	font-family: "Raleway",sans-serif;
 }
+
+.session-form .form-group .fixed {font-weight: bold;background: none;font-size: 100%;padding:0 0 0 6px;}
+
 .session-form .form-control:focus {border:0.5px solid #70A7A6; }
 
 .session-form #title{

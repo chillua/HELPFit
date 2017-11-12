@@ -92,6 +92,18 @@
         <div class="session-form">
           <form id="session" action="#" method="post" autocomplete="off" >
             <div class="form-group">
+              <div class="row">
+                <div class="col-sm-12 col-lg-6">
+                  <label for="title" class="label">TITLE</label>
+                  <p class="fixed"><?php echo $_SESSION['training']['title']; ?></p>
+                </div>
+                <div class="col-sm-12 col-lg-6">
+                  <label for="sessionID" class="label">SESSION ID</label>
+                  <p class="fixed">#<?php echo $_SESSION['training']['sessionID']; ?></p>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
               <label for="training_type" class="label">TRAINING TYPE</label>
               <?php if (isset($_SESSION['personal'])) {
                 echo '<p id="stype"> Personal Training </p>';

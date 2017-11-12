@@ -27,7 +27,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>HELPFit Member | Home</title>
+  <title>HELPFit Member | View History</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -82,6 +82,16 @@
           ?><a class="link" href="view_sessions.php">&nbsp;Join another training >></a>
         </strong>
       </div>
+    <?php endif ?>
+    <?php if (isset($_SESSION['error'])) : ?>
+      <div class="alert alert-danger alert-dismissible" style="background:rgba( 223, 172, 166, .9) !important;color:#B45F55;">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>
+          <?php
+            echo $_SESSION['error'];
+            unset($_SESSION['error']);
+          ?>
+        </strong></div>
     <?php endif ?>
     <div class="row">
       <div class="col-xs-12 col-xs-6">

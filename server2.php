@@ -418,13 +418,16 @@
 
   //add review
   if (isset($_POST['review'])) {
-    $rating = $_POST['rate_star'];
-  	$comments = trim(mysqli_real_escape_string($db, $_POST['comments']));
-  	$member_id = $_SESSION['user']['user_id'];
-    $trainer_id = $_POST['trainer_id'];
-    $sessionID = $_POST['sessionID'];
-    if (empty($rating)) { $_SESSION['error'] = "Please enter a rating with the stars."; }
-    if (!isset($_SESSION['error'])){
+    if (!isset($_POST['rate_star']) || ($_POST['rate_star'] == 0) || empty($_POST['rate_star']))
+    {
+      $_SESSION['error'] = "Please enter a rating with the stars.";
+    }
+    else{
+      $rating = $_POST['rate_star'];
+    	$comments = trim(mysqli_real_escape_string($db, $_POST['comments']));
+    	$member_id = $_SESSION['user']['user_id'];
+      $trainer_id = $_POST['trainer_id'];
+      $sessionID = $_POST['sessionID'];
       $query = "INSERT INTO review (rating,comments,trainer_id,member_id,sessionID)
   				  VALUES('$rating','$comments', '$trainer_id','$member_id','$sessionID')";
   		mysqli_query_or_die($query);

@@ -316,6 +316,7 @@ if (isset($_POST['editsession'])){
   $class_type = $_POST['class_type'];
   $training_type = $_SESSION['training']['training_type'];
   $status = $_POST['status'];
+  $init_status = $_POST['status'];
   $sessionID = $_SESSION['training']['sessionID'];
 
   if (empty($title)) { array_push($errors, "Title is required."); }
@@ -334,7 +335,7 @@ if (isset($_POST['editsession'])){
   $data = mysqli_fetch_assoc($result);
   $no_pax = $data['total'];
   if ((($training_type == "personal")&&($no_pax >= 1))||(($training_type=="group")&&($no_pax >= $max_pax))){
-    if ($status != "full"){
+    if ($init_status != "full"){
       $status = "full";
       $_SESSION['status_change'] = "Status is changed to full because there are no slots left.";
     }
@@ -342,7 +343,7 @@ if (isset($_POST['editsession'])){
     //if the date is not on the same day
     $f_date = DateTime::createFromFormat('d/m/Y', $date)->format('Y-m-d');
     if($f_date != date("Y-m-d")){
-      if ($status != "available"){
+      if ($init_status != "available"){
         $status = "available";
         $_SESSION['status_change'] = "Status is changed to available because there are still available slots.";
       }
@@ -352,10 +353,13 @@ if (isset($_POST['editsession'])){
   if (count($errors) == 0) {
     //format the date
     $f_date = DateTime::createFromFormat('d/m/Y', $date)->format('Y-m-d');
-    if($f_date < date("Y-m-d")){
-       if ($status != "completed"){
+    if(($f_date < date("Y-m-d"))||(($f_date == date("Y-m-d"))&&($init_status == "completed"))){
+       if ($init_status != "completed"){
          $status = "completed";
          $_SESSION['status_change'] = "Status is changed to completed because the date is in the past.";
+       }else{
+         $status = "completed";
+         unset($_SESSION['status_change']);
        }
      }
 
